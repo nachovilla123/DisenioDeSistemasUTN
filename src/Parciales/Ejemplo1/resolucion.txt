@@ -1,0 +1,40 @@
+Buenas tardes, estuve trabajando un diagrama para el final Notesbox que pasaron el otro día y me surgieron un par de dudas. Paso el diagrama que tengo hecho por ahora. Y un par de decisiones que tomé que me gustaría saber si están bien.
+Decisiones
+    1. La interacción con el convertidor midi a especificación de fábrica lo aislé mediante una interfaz adapter y puse una clase que representa la implementación concreta. Igualmente no está especificado cómo sería dicha imple. Debería borrar esa clase concreta del diagrama y dejar sólo la interfaz? Debería poner la clase concreta con comentarios para definir después?.
+    
+    2. La misma situación con la interacción con el manejador de Stock tipo SAAS. No dice en ningún lado cómo es la REST API ni el formato de los mensajes que acepta. Lo aislé con una interfaz adapter y puse una clase concreta de borrador. Dejo la clase concreta por más que sea algo que probablemente no se use?
+
+    3. En un momento en la consigna menciona requerimientos del estilo: "Como cliente, poder registrarme cargando los datos básicos de contacto..." o cosas que a mi entender requieren cierto tipo de persistencia, sin embargo no se especifica nada respecto a la base de datos o cómo se guardan los datos. Para poder avanzar con esta situacion definí unas interfaces Repositorio por cada entidad que me interesa persistir o consultar en un futuro. Dichas interfaces son usadas por clases ServicioProducto y ServicioCliente, estas clases son las que acceden transversalmente al resto de las capas: DB , manejador Stock (Rest api) y el convertidor. Este enfoque está bien? o debería sacar esto del scope de la resolución?
+
+    Bueno esas son mis dudas por el momento
+
+
+
+----------- CORRECCIONES -----------
+
+Te dejo algunas consideraciones:
+
+    █Pensar si es necesario o no una abstracción para el carrito, más allá de que hoy en día esté modelada como una colección. ¿Qué diferencia existiría si tengo una clase Carrito?
+
+    █[GRAVE] Métodos con nombre de "Botón" o con nombre de "Casos de uso" NO  van a nivel capa de dominio. Ejemplo: "listarOrdenes", de la clase cliente; o "consultarFabrica" de Admin, o similares. Repasar clase donde vimos las capas de un Sistema y fuimos desglosando los CUs en distintas capas.
+
+    █¡Cuidado! Existen dos tipos de caja: cajas con melodía predefinidas que ya tienen stock en el local y cajas que se pueden ensamblar con melodías a demanda, que hay que consultar el Stock con el servicio externo. Siendo ese el caso, ciertas cajas sí van a estar atadas a una melodía y otras no de forma directa, sino que hay que buscar la forma de establecer la relación "esta caja con esta melodía".
+    
+    █Revisar el modelado de las fábricas que hoy día están modeladas como un simple String
+
+    █Revisar el Conversor MIDI, ya que hay que utilizar un Script que ya está hecho pero que no sabemos ni tenemos el detalle de cómo es.
+    
+    Creo que varias cositas tenes en común con tu compañero que envió la solución por aquí también. Quizás te sirva compararlo y ver lo que a él también le dijimos!
+
+
+
+------ RESPUESTA A CORRECCIONES -----
+
+hice una nueva versión del diagrama de clases eliminando los repositorios e intentando aplicar las correciones que me marcaste.
+Por el momento creo que sólo tengo cosas relacionadas puramente al dominio. Sin embargo hay cosas que entiendo que las terminaría haciendo un controlador pero no estoy seguro si debería modelar algo en el dominio que represente esa funcionalidad.
+Por ejemplo:
+de "Alcance y Requerimientos"
+6. Como persona administradora, poder revisar las órdenes pendientes de fabricación y asignarles
+una fábrica a su elección que esté en condiciones de aceptar la orden.
+Entiendo que una parte del programa se debería dedicar a poder ver (listar) las órdenes de compra independientemente del cliente al que pertenezcan. Esta vista general la podrán tener los administradores para poder asignar una fábrica según sea necesario o incluso cambiarles el estado.
+¿Tengo que modelar algo en mi dominio para que explícitamente un administrador pueda ejecutar un método que le permita listar ódenes de compras independientemente del cliente? o basta con modelar un dominio que lo soporte? Por ejemplo así como modelé el "Catálogo" podría modelar algo que sea "AdministradorOrdenCompra" y que tenga el listado de todas las ordenes de compra del sistema.
