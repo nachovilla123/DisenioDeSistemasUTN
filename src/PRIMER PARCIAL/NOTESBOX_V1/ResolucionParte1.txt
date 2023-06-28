@@ -1,3 +1,6 @@
+
+--------------- A(Alumno):PRIMERA CONSULTA ---------------
+
 Buenas tardes, estuve trabajando un diagrama para el final Notesbox que pasaron el otro día y me surgieron un par de dudas. Paso el diagrama que tengo hecho por ahora. Y un par de decisiones que tomé que me gustaría saber si están bien.
 Decisiones
     1. La interacción con el convertidor midi a especificación de fábrica lo aislé mediante una interfaz adapter y puse una clase que representa la implementación concreta. Igualmente no está especificado cómo sería dicha imple. Debería borrar esa clase concreta del diagrama y dejar sólo la interfaz? Debería poner la clase concreta con comentarios para definir después?.
@@ -10,8 +13,8 @@ Decisiones
 
 
 
------------ CORRECCIONES -----------
-
+----------- B(Profesor): CORRECCIONES -----------
+    (ResolucionParte1Audio) //TODO meterlo a un drive publico
 Te dejo algunas consideraciones:
 
     █Pensar si es necesario o no una abstracción para el carrito, más allá de que hoy en día esté modelada como una colección. ¿Qué diferencia existiría si tengo una clase Carrito?
@@ -28,13 +31,24 @@ Te dejo algunas consideraciones:
 
 
 
------- RESPUESTA A CORRECCIONES -----
+------ A(Alumno) NUEVA VERSION en base a correcciones -----
+(diagramaParte2.png)
 
 hice una nueva versión del diagrama de clases eliminando los repositorios e intentando aplicar las correciones que me marcaste.
+
 Por el momento creo que sólo tengo cosas relacionadas puramente al dominio. Sin embargo hay cosas que entiendo que las terminaría haciendo un controlador pero no estoy seguro si debería modelar algo en el dominio que represente esa funcionalidad.
+
 Por ejemplo:
 de "Alcance y Requerimientos"
 6. Como persona administradora, poder revisar las órdenes pendientes de fabricación y asignarles
 una fábrica a su elección que esté en condiciones de aceptar la orden.
+
 Entiendo que una parte del programa se debería dedicar a poder ver (listar) las órdenes de compra independientemente del cliente al que pertenezcan. Esta vista general la podrán tener los administradores para poder asignar una fábrica según sea necesario o incluso cambiarles el estado.
+
 ¿Tengo que modelar algo en mi dominio para que explícitamente un administrador pueda ejecutar un método que le permita listar ódenes de compras independientemente del cliente? o basta con modelar un dominio que lo soporte? Por ejemplo así como modelé el "Catálogo" podría modelar algo que sea "AdministradorOrdenCompra" y que tenga el listado de todas las ordenes de compra del sistema.
+
+
+
+--------------------------- B(Profesor)---------------------------:
+Respuesta en base a NUEVA VERSION 
+(ResolucionParte2Audio.m4a) //TODO meterlo a un drive publico
