@@ -1,0 +1,18 @@
+
+Hola a todos! Me surgió una duda sobre diseño en general, que quizas no tenga una única respuesta porque justamente es general. Para dar un poco de contexto, planteo un ejemplo sencillo:
+
+Supongamos que tenemos una clase Sucursal y una clase Empleado y me dicen que una sucursal tiene muchos empleados, pero un empleado trabaja en una sola sucursal. Entonces se me ocurren dos formas distintas de resolverlo:
+
+A) La sucursal tiene una List<Empleado>.
+B) El Empleado tiene una Sucursal.
+Supongamos que elijo la A y requiero que una tercera clase pueda saber de que sucursal es un empleado. Esto no es posible sólo con el empleado porque no está la referencia.
+
+Entonces elijo la B, pero tambien requiero que un tercero pueda saber todos los empleados que están en una sucursal. Esto no es posible sólo con la sucursal porque no está la referencia.
+Entonces digo bueno, si necesito las dos cosas, pongo las referencias en las dos clases:
+
+C) La sucursal tiene una List<Empleado> + El Empleado tiene una Sucursal.
+Esto sin embargo, genera una doble flecha entre clases, acoplandolas en ambas direcciones.
+Acá radica la pregunta, esas dobles flechas representan afectan negativamente a la calidad del diseño? Conviene usarlas o generan acoplamiento de más?
+
+Entiendo que capaz depende mucho de los requerimientos, pero quería hacerme una idea general.
+Dejo también un ejemplo algo más elaborado para que se aprecie mejor lo que quiero decir.
