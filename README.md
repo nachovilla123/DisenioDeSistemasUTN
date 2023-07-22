@@ -1,8 +1,8 @@
 Hello There!
 
-Repositorio de github de la cursada 2023.
-El objetivo: material de estudio 
+Repositorio de Diseño de Sistemas UTN FRBA 2023.
 
+El objetivo: material de estudio 
 
 ## SRC
 
@@ -19,4 +19,5 @@ El objetivo: material de estudio
 ### Contenido
 - El contenido de este repositorio es en base a los materiales brindados por la catedra
 - Resoluciones de alumnos con las correcciones de algun profesor
-- Resoluciones propias (aun ninguna 28/06/2023)
+
+  
