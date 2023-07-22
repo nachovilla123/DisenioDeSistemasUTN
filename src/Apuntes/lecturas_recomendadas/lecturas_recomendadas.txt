@@ -1,0 +1,24 @@
+
+
+-Entity vs Value Object: the ultimate list of differences
+https://enterprisecraftsmanship.com/posts/entity-vs-value-object-the-ultimate-list-of-differences
+
+
+
+Value Objects explained
+-https://enterprisecraftsmanship.com/posts/value-objects-explained/
+
+
+
+Refactoring & Code Smells
+https://docs.google.com/document/d/1cAje0qwy3Cus_ob0r-tatbcT01sDFeLt3MmSVmLeSxk/edit#
+
+
+
+Inyección de Dependencias
+https://docs.google.com/document/d/1GsW-hVF0XR76KunDILqkltyE1KIBvj3ldCCkyStjne0/edit#
+
+
+Reificando comportamiento
+https://docs.google.com/document/d/14n6SNTbCt1wJzhNiIFNSoAq0tJdYjRrOQCi5ar_FQ1c/edit#heading=h.6ab0fffv8tld
+
