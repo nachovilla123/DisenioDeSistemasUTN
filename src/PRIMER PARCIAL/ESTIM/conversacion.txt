@@ -1,0 +1,36 @@
+--------------- A(Alumno):PRIMERA CONSULTA ---------------
+
+Buenas tardes,estuve viendo el ejercicio de final esTim y quería tener un feedback de su parte
+
+No estoy seguro de como modelar la clase Genero ya que dice que cada Género define sus propios atributos y cuáles son obligatorios y opcionales
+
+Tambien en mi diagrama hay una clase ReceptorFraude que tiene un método verificarPrestamos verifica los distintos tipos de fraude que hay ,no sé si habría alguna forma de encapsularlo más ya que habría tres IF en ese método
+
+Otra duda es respecto a cómo modelar el DLC si tendría asociado si o si un atributo de clase Juego o Juego_Comun
+
+Esas serian mis dudas principales
+
+
+// ver diagrama y decisiones para continuar//
+
+--------------- B(Profesor):RESPUESTA A PRIMERA CONSULTA ---------------
+
+// escuchar audio_feedback_profesor //
+
+
+--------------- A(Alumno):RESPUESTA A FEEDBACK ---------------
+
+
+Si lo de la clase Juego y el tema de los DLC fue lo que más duda me generaba
+
+
+No me había percatado de lo de las preguntas por cada Género eso me falto
+Respecto a la clase Usuario entonces sería Jugador en vez de Usuario y no existiría la clase Usuario para este modelado o aún así debiera incluirla con atributos nombre usuario y contraseña
+
+
+Lo de si la cuenta está suspendida le puse tipo booleano porque no tenía mucho sentido crear una Clase para dos opciones que no realizaban ninguna acción pero si a futuro pueden haber mas estados tendría sentido que fuera una clase entiendo
+
+
+No entiendo como sería pensar la clase DetectorFraude de forma asincrónica que debiera crear una clase que detecte cada tipo de fraude en particular?
+
+Gracias
