@@ -1,0 +1,73 @@
+
+--------------- A(Alumno):PRIMERA CONSULTA ---------------
+
+Buenas, había hecho el ejercicio de Notesbox hace ya unas semanas y quería tener un feedback de mi resolución. No me quedo muy claro si para la API del stock basta con poner una interfaz. que luego supongo que se va a conectar a una clase concreta que implemente dicha API.
+
+ (ver decisiones diseño notesbox.docx y diagramaParte01.jpg)
+
+
+--------------- B(Profesor):RESPUESTA A PRIMERA CONSULTA ---------------
+
+Buen día! Sí, tu diseño puede llegar hasta ahí, y el resto lo deberías comentar en prosa en el diagrama/justificaciones. Lo importante es quién y cómo se usa esa interface para conseguir el Stock
+
+
+Te dejo algunas consideraciones:
+
+Pensar si es necesario o no una abstracción para el carrito, más allá de que hoy en día esté modelada como una colección. ¿Qué diferencia existiría si tengo una clase Carrito?
+
+
+[GRAVE] Métodos con nombre de "Botón" o con nombre de "Casos de uso" NO  van a nivel capa de dominio. Ejemplo: "listarOrdenes", de la clase cliente; o "consultarFabrica" de Admin, o similares. 
+**Repasar clase donde vimos las capas de un Sistema y fuimos desglosando los CUs en distintas capas.**
+
+
+¡Cuidado! Existen dos tipos de caja: cajas con melodía predefinidas que ya tienen stock en el local y cajas que se pueden ensamblar con melodías a demanda, que hay que consultar el Stock con el servicio externo. Siendo ese el caso, ciertas cajas sí van a estar atadas a una melodía y otras no de forma directa, sino que hay que buscar la forma de establecer la relación "esta caja con esta melodía".
+
+
+Revisar el modelado de las fábricas que hoy día están modeladas como un simple String
+
+
+Revisar el Conversor MIDI, ya que hay que utilizar un Script que ya está hecho pero que no sabemos ni tenemos el detalle de cómo es.
+
+
+Creo que varias cositas tenes en común con tu compañero que envió la solución por aquí también. Quizás te sirva compararlo y ver lo que a él también le dijimos!
+
+
+
+--------------- A(Alumno):SEGUNDA CONSULTA ---------------
+
+(ver diagramaParte02)
+
+Ahí use un adapter para el script del conversorMIDI.
+
+1) Respecto al carrito, al principio lo había hecho como una clase separada pero al ver que solo tenia una lista de cajas como atributo y no tenia comportamiento, decidí sacarla. Tal vez tenerla como clase separa podría dejar lugar a que en un futuro se incorpore un comportamiento propio de la caja y que no se junte todo en el Cliente.
+
+
+2) Los metodos de listar entiendo que sean de una capa superior, pero "consultarFabrica" lo había pensado como que el admin podía ver a que fabrica pertenece una orden, no entiendo como distinguir si va en la capa de dominio o no.
+
+
+3)Las cajas de melodías predefinidas podrían ser simplemente instancias de la clase Caja que se hayan construido con una melodia ya asignada. Por ejemplo, new Caja(melodia_X). Las cajas a demanda podrían estar vacias (melodia = null) y que el cliente tenga un método "pedir(melodia)" que haga un new Caja(melodia). No estoy seguro si con eso ya cubriría el problema.
+
+
+4)Modele las fábricas como Strings porque no estaban relacionadas con el sistema directamente por lo que entendí del enunciado. Dice "Notesbox trabaja con varios fabricantes, que se encargan de la fabricación de los cilindros y el resto de las piezas, que luego Notesbox ensambla. El contacto con estos fabricantes, tanto para consultar si tienen disponibilidad para fabricar como para realizarles el encargo, es telefónico.". Por lo que dice el enunciado, entiendo que la parte de fabricacion está por fuera del sistema.
+
+Podría tener una clase "Fabrica" con el nombre solamente y sin comportamiento, pero no veo que aporte mucho. Solo lo haría por un tema de consistencia de datos. Capaz estoy pasando algo por alto.
+
+
+
+--------------- B(Profesor):RESPUESTA A SEGUNDA CONSULTA ---------------
+
+Buenos dias!te contesto en orden:
+
+1)No solamente pienses en el comportamiento. ¿Qué más me brinda tener una abstracción carrito más allá de una simple colección en el Cliente? Si tengo un carrito, el mismo podría tener un Estado, por ejemplo. El estado del carrito podría llegar a ser: Concretado, Descartado, En proceso, etc. Además, podría tener fecha/hora de cuándo se manipuló dicho carrito, etc. Si no tengo dicha abstracción, el "carrito" (colección) es efímera: se debería borrar cada vez que el cliente quiera realizar una nueva compra. A esto me refería que pienses cuando te lo pregunté, más allá de comportamiento.
+
+
+2)Tu método consultarAdmin(orden) solamente haría un return orden.getFabrica(); Eso cae directamente en un Smell que vimos llamado "Métodos fuera de lugar e Intermediario", el Smell que justo nos dió el pie para explicar las capas y responsabilidades de las mismas. Si un administrador quiere consultar la fábrica de una orden, simplemente debería existir un OrdenesController con un método "detalleDe(orden)" (por ejemplo) que devuelva una vista con el detalle de la orden, mostrando la fábrica. Dentro de ese método que menciono simplemente se podría hacer algo del estilo "if(usuario.rol == "Admin") etc... De forma análoga, esto te debería servir como explicación para todo el resto de los métodos.
+
+
+3)Siguiendo con la explicación anterior, no deberías tener un método "pedir(melodía)". Más allá de eso: ¿cómo mantenes el Stock? ¿Cada instancia de tu clase Caja está representando a una caja física real? ¿O cada instancia está representando a un conjunto de cajitas reales de las cuales puedo tener X en Stock? Tener en cuenta que en la orden yo debo detallar: "quiero 5 unidades de la caja Y". "Caja Y" podría tener Stock 6, por lo que despues de generar la orden y cubrirla, quedaría con Stock 1. Por otro lado, podría decir: "Quiero 5 unidades de la caja X", pero solamente hay 3 unidades en Stock de la caja X, por lo que la orden debería quedar como PENDIENTE DE FABRICACIÓN. Por otro lado, yo podría decir "Quiero 2 unidades de la melodía X en la cajita U", las cuales debo mandar a fabricar si o si porque no son "comunes" sino que son personalizadas. Te pido que pienses en estos ejemplos para ver si cumplis con todo en base a tu diseño.
+
+
+4)Deberías ir por el lado de la consistencia de datos, pues en requerimiento 5 y 7 te hace mención a ello. En el 5 te pide que puedas "asignarle una fábrica", pero en el 7 te pide que puedas ver las fábricas asignadas a cada orden. Si no mantenes consistencia en esos datos, deberías ingresar a mano 11119898 veces los nombres de las fábricas, y nunca podrías generar algún "reporte" o "agrupamiento por fábrica", que te lo da a entender el req. 7
+
+
+

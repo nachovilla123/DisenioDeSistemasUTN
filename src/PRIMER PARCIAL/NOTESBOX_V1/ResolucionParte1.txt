@@ -15,6 +15,7 @@ Decisiones
 
 ----------- B(Profesor): CORRECCIONES -----------
     (ResolucionParte1Audio) //TODO meterlo a un drive publico
+    
 Te dejo algunas consideraciones:
 
     █Pensar si es necesario o no una abstracción para el carrito, más allá de que hoy en día esté modelada como una colección. ¿Qué diferencia existiría si tengo una clase Carrito?
