@@ -1,4 +1,0 @@
-
-Pensando un poco más me surgió otra duda, hablaste de reducir al mínimo la cantidad de accesos. Ponele que en el Ejemplo, desde Tercero2 hago empleado.getSucursal().getRegionOperacion().getFranquicia() para saber a que franquicia pertenece a un empleado. 
-
-Eso me suena al smell de cadena de mensajes, estaría mal hacerlo? Digo como para orientarme a ver si es mejor plantearlo así o resolverlo en otra capa como vos dijiste. (editado) 

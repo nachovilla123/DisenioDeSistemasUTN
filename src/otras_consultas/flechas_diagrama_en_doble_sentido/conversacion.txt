@@ -1,4 +1,6 @@
 
+----------------- ALUMNO CONSULTA 1 -----------------
+
 Hola a todos! Me surgió una duda sobre diseño en general, que quizas no tenga una única respuesta porque justamente es general. Para dar un poco de contexto, planteo un ejemplo sencillo:
 
 Supongamos que tenemos una clase Sucursal y una clase Empleado y me dicen que una sucursal tiene muchos empleados, pero un empleado trabaja en una sola sucursal. Entonces se me ocurren dos formas distintas de resolverlo:
@@ -16,3 +18,31 @@ Acá radica la pregunta, esas dobles flechas representan afectan negativamente a
 
 Entiendo que capaz depende mucho de los requerimientos, pero quería hacerme una idea general.
 Dejo también un ejemplo algo más elaborado para que se aprecie mejor lo que quiero decir.
+
+    ******************************
+    **Ver imagen_consulta_01.png**
+    ******************************
+
+
+----------------- PROFESOR RESPUESTA A CONSULTA 1 -----------------
+    
+    ******************************
+    **escuchar audio_rta_01.mp4**
+    ******************************
+
+
+----------------- ALUMNO CONSULTA 2 -----------------
+
+Pensando un poco más me surgió otra duda, hablaste de reducir al mínimo la cantidad de accesos. Ponele que en el Ejemplo, desde Tercero2 hago empleado.getSucursal().getRegionOperacion().getFranquicia() para saber a que franquicia pertenece a un empleado. 
+
+Eso me suena al smell de cadena de mensajes, estaría mal hacerlo? Digo como para orientarme a ver si es mejor plantearlo así o resolverlo en otra capa como vos dijiste.
+
+
+----------------- PROFESOR RESPUESTA A CONSULTA 2 -----------------
+
+    ******************************
+    **escuchar audio_rta_02.mp4***
+    ******************************
+
+
+----------------- FIN CONVERSACION -----------------
