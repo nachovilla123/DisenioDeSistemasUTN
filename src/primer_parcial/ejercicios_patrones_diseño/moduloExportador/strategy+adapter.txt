@@ -1,0 +1,7 @@
+implementacion de la solucion en : https://github.com/dds-utn/modulo-exportador 
+
+compara tu solucion con el diagrama!
+
+
+todo: poner decisiones de diseño de la clase
+
