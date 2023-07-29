@@ -1,0 +1,5 @@
+En este ejercicio se propone utilizar el patron state y template method.
+
+Repositorio con codigo implementado: https://github.com/dds-utn/tendencias-musicales
+
+complementar con el diagrama de clases para comparar tu resolucion!
