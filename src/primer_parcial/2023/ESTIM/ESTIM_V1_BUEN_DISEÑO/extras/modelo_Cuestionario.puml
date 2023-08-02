@@ -1,0 +1,17 @@
+@startuml
+
+Cuestionario -->"*" Pregunta
+Encuestado --> Cuestionario
+Encuestado -->"*" Respuesta
+Respuesta --> Pregunta 
+
+class Cuestionario {
+
+}
+
+class Respuesta {
+    Pregunta
+    valorRespondido
+}
+
+@enduml

@@ -1,0 +1,221 @@
+
+nota: en caso de dañarse la imagen poner este codigo en el editor de texto online de plantuml 
+
+@startuml
+
+Juego --> Genero
+
+
+MiembroEstim -->"*" Juego
+MedioDePago <-- MiembroEstim
+Compra --> MedioDePago
+
+DetectorAntiFraude ..> MiembroEstim
+DetectorAntiFraude -->"*" ValidacionAntiFraude
+MiembroEstim --> "*" Compra
+Compra --> Juego
+Compra --> DLC
+Prestamo --> MiembroEstim
+Prestamo --> MiembroEstim
+
+Prestamo --> Juego
+
+CronTask --> DetectorAntiFraude
+
+class Juego {
+
+    string nombre
+    string rendimientoCPUNecesario
+    string memoriaNecesario
+    String almacenamientoNecesario
+    double precioDeVenta
+    Genero genero
+    
+    List<DLC> dlcAsociados
+    List<AtributoCargado> atributos  
+}
+
+Juego -->"*" AtributoCargado 
+
+AtributoCargado --> Atributo
+
+class AtributoCargado{
+    Atributo atributo
+    String respuestaAlAtributo
+}
+
+Genero --> "*" Atributo
+
+class Atributo {
+    Boolean esObligatorio
+    String preguntaAtributo
+}
+
+Juego -->"*" DLC
+
+class DLC {
+    String nombre
+    Double precioDeVenta
+}
+
+
+
+class Genero {
+    String nombre
+    boolean esObligatorio
+    List<String> atributos
+
+    void agregarAtributo()
+}
+
+
+class Compra {
+    MedioDePago medioDePago
+    Juego juego
+    DLC dlc
+    Double precio
+    LocalDateTime fecha
+}
+
+
+
+class MiembroEstim {
+    MedioDePago medioDePago
+    list<Juego> juegos
+    list<Compra> compras
+
+    List<Prestamo> prestamosTomados // me prestan
+    List<Prestamo> prestamosBrindados // presto
+
+    Boolean esSospechosoDeFraude
+}
+
+
+
+
+class Prestamo{
+    MiembroEstim prestador
+    MiembroEstim tomador
+    LocalDateTime fechaComienzo
+    LocalDateTime fechaFin
+    Juego juego
+    DLC dlc
+
+    void comenzar()
+    void finalizar()
+}
+
+
+
+interface MedioDePago {
+    modelado inicialmente como una interfaz
+    porque aun no mencionan nada sobre su desarrollo
+    no queremos condenar a nuestro sistema con herencia o una clase vacia
+    
+    Lo unico que piden es identificar el medio de pago en las compras. 
+    Podria utilizarse un enumerado tambien en este momento 
+    pero no menciona que medios de pago serian los aceptados
+
+    Suena a que en un futuro sera desarrollado por otro equipo (patron adapter) 
+    aunque no detecto metodos para esta interfaz
+    es un problema "interface" vacia?
+}
+
+
+
+class DetectorAntiFraude{
+
+    List<ValidacionAntiFraude> validaciones
+
+    List<AccionFraude> acciones
+
+    List<MiembroEstim> usuariosQueComentenFraude( List<MiembroEstim> )
+    void aplicarAccionesA(List<MiembroEstim>)
+}
+
+interface AccionFraude {
+    void accionar(MiembroEstim)
+}
+
+DetectorAntiFraude --> AccionFraude
+
+interface ValidacionAntiFraude {
+    Boolean cometeFraude(MiembroEstim)
+}
+
+class Mas10PrestamosUltimoAnioMismoUsuario implements ValidacionAntiFraude{
+    AdapterMas10PrestamosUltimoAnioMismoUsuario
+    Boolean cometeFraude(MiembroEstim)
+}
+class Mas400PrestamosUltimoAnio implements ValidacionAntiFraude{
+    AdapterMas400PrestamosUltimoAnio
+    Boolean cometeFraude(MiembroEstim)
+}
+class PrestamoActualTieneMas2Años implements ValidacionAntiFraude{
+    AdapterPrestamoActualTieneMas2Años
+    Boolean cometeFraude(MiembroEstim)
+}
+
+interface AdapterMas10PrestamosUltimoAnioMismoUsuario {
+    Boolean cometeFraude(MiembroEstim)
+}
+interface AdapterMas400PrestamosUltimoAnio {
+    Boolean cometeFraude(MiembroEstim)
+}
+interface AdapterPrestamoActualTieneMas2Años {
+    
+    Boolean cometeFraude(MiembroEstim)
+}
+
+Mas10PrestamosUltimoAnioMismoUsuario --> AdapterMas10PrestamosUltimoAnioMismoUsuario
+Mas400PrestamosUltimoAnio -->AdapterMas400PrestamosUltimoAnio
+PrestamoActualTieneMas2Años -->AdapterPrestamoActualTieneMas2Años
+@enduml
+
+
+algunas decisiones de diseño:
+
+El DetectorAntiFraude se activara por una crontask por tiempo configurable por el administrador del sistema
+o aquellas personas que tengan acceso para activar el mecanismo. pero esos permisos son para la capa de controllers.
+
+
+En cuanto a "En caso de detectar una cuenta que parezca sospechosa deberá marcarse como
+sospechosa de fraude y ejecutar una o varias acciones definidas por el administrador (aún no sabemos
+cómo estarán implementadas)."
+
+Al no saber como estaran implementadas, no tenemos mucho por modelar mas que una interfaz accionFraude 
+en el detector antifraude
+De esta manera podra ser desarrollado por cualquier equipo en un futuro
+
+
+- Al no detallarse la implementacion de los mecanismos anti fraude, no sabemos si seran desarrollados por otros equipos con sistemas externos. Es por eso que la implementacion de estos queda con una interfaz para un futuro.
+
+
+Para cerrar: El detector antiFraude puede ser activado asincronamente, aplicara todas las ValidacionAntiFraude que tenga configuradas y a los usuarios que se devuelvan del metodo usuariosQueComentenFraude se les aplicaran las AccionFraude configuradas.
+
+
+
+Del medio de pago solo nos menciona que le interesa saber cual es el medio de pago de una compra.
+Es obligatorio que la compra conozca un medio de pago. Tambien el miembro puede tener un medio de pago configurado.
+de esta manera a la hora de hacer una nueva compra, no debe volver a ingresar su medio de pago.
+
+
+
+- en la compra guardo como 2 atributos distintos al Juego y al DLC.
+tome esta decision para evitar herencias. Despues en el futuro uno de los 2 siempre quedara en null.
+
+Otra alternativa puede ser una interfaz "Adquirible|Comprable|Producto"
+para que el Juego y DLC la implementen y respondan a los metodos que se necesiten para cumplir el objetivo del sistema. 
+
+
+
+En cuanto a los atributos de los generos esto se basa en el modelo "PREGUNTA-RESPUESTA" | "CUESTIONARIO"
+Cuando cargamos un juego con un genero deberemos responder preguntas asociadas al genero. ej:
+
+    Fifa 24 , genero:deportes
+
+    permite jugar online? si/no
+    Es el mismo juego de todos los años? si/no 
+    
+
+

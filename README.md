@@ -10,7 +10,7 @@ El objetivo: material de estudio
 
 - Cada carpeta hace referencia a una resolucion de un Final ( En la catedra resolvemos finales como parciales)
 - La resolucion es de algun alumno del curso y tiene sus consideraciones con RECOMENDACIONES de un PROFESOR
-- Intentar seguir los archivos dentro de cada carpeta como si fuera una conversacion de Slack.
+- Intentar seguir los archivos dentro de cada carpeta como si fuera una conversacion de Slack/wpp.
 
 
 ### Contenido
