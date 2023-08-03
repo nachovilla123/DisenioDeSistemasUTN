@@ -1,0 +1,41 @@
+
+------------ PRIMER CONSULTA ALUMNO(A) -----------
+Hola!
+Hice el ddc de esTim y quería saber que correcciones podrías hacerme!
+
+********************************************
+********** VER diagrama_estim.jpg **********
+********************************************
+
+------------- PRIMER RESPUESTA PROFESOR (B) -------------
+
+Buenas, te dejo un par de consideraciones:
+
+    -Los DLC también deberían tener un nombre y precio
+
+    -A la compra se le debería agregar, mínimamente, una fecha/hora.
+
+    -Método "comprar" de la interface Producto ¿Qué hace? 
+
+    -Por el lado de los géneros, te falta modelar los atributos que hay que completar según el género escogido.
+
+    -Siguiendo con lo anterior, cuando una empresa crea un nuevo juego y asigna el género, debe completar esos atributos. Deberías guardar esas respuestas también.
+
+    -Al préstamo hay que agregarle otra fecha, pues hoy en día solamente tiene un único atributo "fecha" que no sé si representa la fecha de alta o la fecha de devolución.
+
+    -Por el lado del "Detector", va queriendo.. pero le falta más iteraciones para llegar a algo implementable/presentable. ¿Qué hace cada condición? ¿Qué hacen tus comandos? ¿Qué necesitan para poder ejecutar? Está como al 50% esta parte...
+
+
+------------ SEGUNDA CONSULTA ALUMNO(A) -----------
+
+Gracias!
+Con respecto al último ítem te referís a las “notas” del seudo código ? 
+
+
+----------  SEGUNDA CONSULTA PROFESOR(B) ----------
+
+Hola! entiendo que lo preguntas por el Detector. De ser así, no, me refiero a que el diseño propuesto no basta para satisfacer todo el requerimiento completo
+
+
+
+
