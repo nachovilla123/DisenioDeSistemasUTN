@@ -1,0 +1,163 @@
+----------------------- 1° CONSULTA ALUMNO -----------------------
+
+Buenas !
+Estuve haciendo el primero de los finales (Servicio de atencion al automotor) que dejaste para practicar y te quería mostrar la solución a la que llegue.
+algunas decisiones y aclaraciones:
+	
+	- Decidí modelar la clase Cliente para poder guardar su numero y mandarle un whatsapp. Y ademas para ganar trazabilidad, ya que tendrá una lista de los prediagnosticos que haya solicitado, y también tiene un nroCliente para poder identificarlo. Siguiendo con la trazabilidad los PreDiagnosticos tienen una fecha de creación y un numero también.
+	
+	- Para construir el Prediagnostico, decidí usar el patrón builder por 2 motivos.
+		1) El PreDiagnostico necesita tener todas las preguntas "respondidas" (muchos atributos configurados) antes de poder usarlo, entonces decidí abstraer la lógica de la construcción del objeto.
+		2) Quería separar al PreDiagnostico de las preguntas que se debían hacer, para esto, en la clase del builder tengo una lista de preguntas, y según esas preguntas se setearan algunos atributos y otros no. Aclaración: La lista de preguntas la pensé como "static" ya que entiendo que todos los PreDiagnosticos deberan responder a las mismas preguntas
+	
+	- Al tener una lista de preguntas en el builder, puedo agregar/quitar/modificar preguntas como menciona el enunciado. (Entiendo que no puede haber preguntas nuevas, ya que también habría que agregar un posible nuevo atributo en el PreDiagnostico. Si pueden variar las preguntas Existentes)	
+	- Respecto a las preguntas que le dan la posibilidad al cliente de seleccionar, yo lo imagine como un desplegable en la web. Para esto decidí "cosificar" algunas cosas como: "TipoVehiculo" "MarcaVehiculo" "ModeloVehiculo" y "Problema". Que pese a que solo tengan un String que representan la respuesta, la idea es poder tener una única instancia de esas clases que sea apuntadas por distintos "PreDiagnosticos", y que esas instancias sean cargadas previamente a través de, por ejemplo, un script y luego se le muestren al cliente en los desplegables. Ademas no le doy libertad a un cliente de que instancie por ejemplo "Chevrolet" y otro cliente "CHEVROLET" y otro "chevroleT" etc. (Dejo un pequeño ejemplo en paint a que me refiero)
+	- Respecto a la exportación a PDF y el envío del whatsapp. Cree 2 clases: "ExportadorAPDF" y "WhatsappSender" que fueron adaptadas usando el patron adapter para poder ganar cohesión y mantenibilidad.
+		- el "ExportadorAPDF" tiene el metodo exportar(PreDiagnostico):String, que devuelve la ruta del archivo.
+		- el "WhatsappSender" tiene el metodo enviarDetalle(Prediagnostico, Cliente):Void, que le envía un mensaje al cliente con el detalle del prediagnostico
+	- Respecto a las Secciones se me ocurrieron alternativas diferentes y no estaba seguro de cual elegir. En todos los casos Necesitaría la lista de tipo Sección en el PreDiagnostico
+		1) Que las secciones se agreguen/modifiquen cuando se setean las diferentes respuestas, por ejemplo: se setea el tipoVehiculo y a su vez se hace un "this.secciones.add(new Seccion("Tipo del vehiculo", "String para la seccion");"
+		2) tener el metodo construirSecciones() que agrega una sección en la lista por cada atributo que no esta en null. Desventaja de esto es que tenemos que hacer un switch o un if para el chequeo de que los atributos no esten en null, pudiendo complicar la mantenibilidad a futuro. Ventaja: separamos la responsabilidad de guardar una sección cuando se setea el atributo		
+		
+		- Ademas se me ocurrieron dos alternativas para la forma en la que se instancian las secciones
+		1) Que haya un método "construirSeccion()" por cada tipo de sección posible, que instancie de manera distinta a la sección, es decir con cada nombre y descripción distintas. Ej : "construirSeccionTipoVehiculo()"
+		2) "Cosificar" el resto de respuestas de la misma manera que hice con "TipoVehiculo" por ejemplo, y que cumplan la interfaz "Respuesta", con los métodos "getRespuesta():String", "getNombreDeSeccion():String", "getDescripcionDeSeccion():String". De esta forma podría tener un "crearSeccion(Respuesta)", y ganaría cohesión, mantenibilidad y extensibilidad, pero no se si es complejizar la solución de más y estaría cayendo en sobrediseño.
+
+
+
+    *********************************
+        VER diagrama_consulta_01.PNG 
+        VER paint_consulta_01.PNG
+    *********************************
+
+
+--------------------------- RTA A CONSULTA 1 ---------------------------
+
+    *********************************
+        ESCUCHAR_ feedback_rta_01.mp4
+    *********************************
+
+
+----------------------- 2° CONSULTA ALUMNO -----------------------
+
+Buenas! vuelvo con una nueva iteración.
+Aclaraciones y decisiones:
+	
+	- Yo a las preguntas que se pueden hacer, las entiendo como un String para la pregunta que se muestra en pantalla, y su lista de opciones (Strings) posibles. Ya sean preguntas desplegables, Booleanas, multiple choice, a completar, siempre Strings. En el caso de las preguntas a completar la lista de opciones podría estar vacía, y que luego el usuario instancie una opción cuando llena la respuesta.
+	- Por otro lado, el tema del tipo de las preguntas. Considerando el punto anterior, ¿es necesario el tipo de una pregunta? ¿para que me serviría en este caso?. Si bien es cierto que puede haber diferentes tipos, la estructura es siempre la misma, una pregunta con sus posibles opciones. Pero no existe comportamiento diferente entre los tipos, ¿o si?
+		- En caso de ser necesario el tipo, podría modelarse de 2 formas.
+			1) Con la clase TipoDePregunta.
+			2) Con herencia pero como vimos en varias clases, la 14 por ejemplo, esto trae consigo algunos problemas.
+	- Para las respuestas modelé la clase "Respuesta" que agrupa una pregunta con las opciones seleccionadas. Es decir, cuando un usuario este "Respondiendo" una pregunta, se va a usar esta clase para saber que opciones "marcó" ante una determinada pregunta (si es de completar se agrega esa opción como si la hubiera "marcado").
+	- Respecto a las secciones, el enunciado no es muy especifico. Dice que estarán formadas por algunas respuestas brindadas. Yo lo entendí como que agrupará algunas respuestas, y a partir de ellas se podrá leer cierta información. Para eso puse el método "informacionDeSeccion():String" que devuelve el String formateado de una determinada manera. Pero la verdad no estoy muy seguro de esto.
+preg.PNG
+
+Ahora que tengo modeladas mis Respuestas de esta manera ya no necesitaría las clases que había hecho antes de por ejemplo "TipoVehiculo", y podría usar estas nuevas "Respuestas" para formar las secciones, tal vez en el generadorDePrediagnosticos que mencionaste en el audio, ¿verdad?
+
+    *********************************
+        VER diagrama_consulta_02.PNG 
+    *********************************
+
+--------------------------- RTA A CONSULTA 2 ---------------------------
+
+    *********************************
+        ESCUCHAR_ feedback_rta_02.mp4
+    *********************************
+
+
+
+----------------------- 3° CONSULTA ALUMNO -----------------------
+
+Buenas nuevamente. Este es el diseño al que llegue.
+
+Lo que me estaba faltando era modelar de alguna manera la relación que tienen las secciones, con las preguntas que se supone que responden en ella.
+
+Para ello cree una clase llamada "PreguntaDeSeccion" que agrupa una pregunta, con su respuesta, si bien es parecida a la clase "Respuesta", lo que se me ocurrió es que el "GeneradorDePrediagnosticos" pueda generar todas las secciones con sus preguntas, pero dejando el atributo respuesta en null, hasta que el usuario justamente responda esa pregunta.
+
+Esta "PreguntaDeSeccion" tendrá el método "fueRespondida():Boolean"
+
+En la Sección agregue dos métodos. "buscarPregunta(Pregunta):PreguntaDeSeccion" que dada una pregunta de la clase "Pregunta" puedo buscar su "PreguntaDeSeccion", para saber si fue respondida, o para setear la respuesta. Y además "setRespuestaDePregunta(Respuesta,Pregunta):void", que primero busca la "PreguntaDeSeccion" con el método anterior, y luego hace un .setRespuesta(Respuesta).
+
+
+Espero que sea esto a lo que te referías cuando mencionaste que debía pensar una manera de generar las secciones, con sus preguntas para las cuales todavía no tengo sus respuestas.
+
+
+Una ultima pregunta. En el diagrama agregue algunas flechas de dependencia, ya que tienen métodos que reciben esa clase por parámetro. ¿Esta bien tener estas flechas, además de las de asociación dirigida? yo entiendo que sí pero por las dudas pregunto.
+
+
+Respecto a las clases que tenia previamente para modelar cosas como "TipoVehiculo" etc, ya no las necesito dado que tengo la clase "Respuesta" (mas genérico) que es lo que estaba tratando de solucionar antes con la cosificación de distintas respuestas particulares.
+
+Muchas gracias!
+
+Una consideracion mas.
+En el método "generarSeccion(nombre, preguntasAConsiderar: List<Pregunta>)" del "generadorDePrediagnosticos", puse que el tipo del segundo parametro era "List<Pregunta>", pero podría usar parámetros variables y poner Pregunta... preguntas. 
+
+    *********************************
+        VER diagrama_consulta_03.PNG 
+    *********************************
+
+
+--------------------------- RTA A CONSULTA 3 ---------------------------
+
+
+
+    *********************************
+        ESCUCHAR_ feedback_rta_03.mp4
+    *********************************
+
+Ejemplo:
+
+    Sección a Armar  "1":
+        Nombre de la sección: "Datos generales"
+        Considerar las respuestas de las preguntas: "pregunta 1 - ¿De qué marca es el auto?", "pregunta 2 - ¿Qué modelo es?", "pregunta 3 - ¿Qué versión es?"
+        
+    Sección "1" ARMADA para cliente X - prediagnóstico X:
+        Nombre de la sección: "Datos generales"
+        Descripción: [concatenación de todas las respuestas]
+        Respuestas: "pregunta 1 - Ford", "pregunta 2 - Fiesta", "pregunta 3 - Kinetic"
+    Sección "1" ARMADA para cliente Y - prediagnóstico Y:
+        Nombre de la sección: "Datos generales"
+        Descripción: [concatenación de todas las respuestas]
+        Respuestas: "pregunta 1 - Chevrolet", "pregunta 2 - Onix", "pregunta 3 - LT"
+
+
+
+----------------------- 4° CONSULTA ALUMNO -----------------------
+
+Lo que se me habia ocurrido respecto a quien le pasa las preguntas a considerar al generadorDePrediagnosticos, es que justamente tenga como atributo una lista de preguntas, con todas las preguntas del sistema, y luego en el metodo generarSecciones(), llamará al metodo generarSeccion(nombre, preguntasAConsiderar) las veces que crea necesario con diferente nombre, y preguntas que son tomadas de su lista que tiene como atributo. Despues de todo, entiendo que todos los prediagnosticos tendran la misma forma (mismas preguntas, pero variando respuestas)
+
+public void generarSecciones(){
+	
+	generarSeccion("Datos Generales", this.getPreguntas().get(0), this.getPreguntas().get(1), this.getPreguntas().get(2)); // Con parametros variables
+	generarSeccion("Problemas", this.getPreguntas().get(3), this.getPreguntas().get(4));
+}
+
+Se que no es lo mas bonito del mundo y que tal vez pueda haber otros metodos auxiliares para delegar responsabilidades etc, pero lo hice asi para ejemplificar rapidamente.
+
+Respecto a quien tiene la coleccion de respuestas. ¿Eso no pasa mas por la capa de datos? yo lo entendí más como que son entidades que guardaríamos en una base de datos y que allí puedan hacerse las querys que relacionan a los prediagnosticos con las respuestas. Despues de todo los prediagnosticos tienen tienen secciones y esas secciones terminan teniendo las respuestas, por lo que una relacion hay.
+
+Lo que se me ocurre a nivel dominio es tal vez tener una clase RepositorioDeRespuestas tal vez, y una clase intermedia que relacione un prediagnostico con sus respuestas. ¿Va más por ahí?.
+Respecto a los ejemplos que das de las Secciones a armar, creo que eso se puede hacer como lo menciono en el primer parrafo. 
+
+
+--------------------------- RTA A CONSULTA 4 ---------------------------
+
+
+Lo que pasa es que tendrías súper hardcodeado en un método las preguntas que tendrías que considerar, en tu caso en el metodo “generarSecciones”. Eso no puede pasar… deberías poder modificar con facilidad las preguntas a considerar en cada sección.
+Respecto a “quien tiene las respuestas”, podrías hacer que el predisgnostico tenga una colección de respuestas y ya. Las secciones no necesariamente guardan referencia a las respuestas, porque podrían generarse/calcularse en momento de ejecución.
+
+
+
+----------------------- 5° CONSULTA ALUMNO -----------------------
+
+Okey entiendo.
+Lo que podría hacer entonces es crear una clase, por ejemplo "SeccionAGenerar" que agrupe un nombre, y las "preguntasRequeridas" para esa seccion en particular. A su vez tendría que agregar una lista en el generadorDePrediagnosticos, para que genere una sección por cada una de estas en su lista.
+De esta manera, yo, como administrador (y si no me equivoco), puedo agregar y quitar SeccionesAGenerar del generador, como también añadir nuevas o modificar (agregar/remover preguntas) las existentes, sin necesidad de recompilar, como si tendría que hacer en la solución anterior donde tenia el método muy hardcodeado.
+Respecto a lo de las respuestas, quedó claro eso.
+Muchas gracias.
+
+
+--------------------------- RTA A CONSULTA 5 ---------------------------
+
+Claro, ahora sí.
+Va por ahi!
