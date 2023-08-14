@@ -1,0 +1,68 @@
+
+----------------------- 1° CONSULTA ALUMNO -----------------------
+
+Buenas tardes. 
+Estuvimos haciendo el final de Universidad a Catar en grupos, y nos quedaron algunas dudas. 
+
+    Las partes de contacto y las categorías las teníamos bastante parecidas, pero la parte del cálculo nos confundió bastante. Te dejo los tres diagramas (el primero es el mío, el segundo de F y el tercero de A) y algunas de las cuestiones que no supimos resolver
+
+    Para el tema del cálculo de la suma de todas las chances y el número de participantes, no supe como hacerlo. Ellos usaron una clase "Sorteo" que conocía a todos los participantes, pero a mí me pareció que eso rompe un poco con las responsabilidades de capa.
+
+    Yo resolví el tema de los participantes que son o no son de la UDDS mediante un tipo universidad, pero me comentaron que en los métodos "esDeLaUDDS" y "calcularChanceHistoriaAcademica" parecía que había herencia rechazada, pero no estamos seguros.
+
+    No pudimos resolver el tema de los pagos. Para la parte de categorías pensamos un state, que verificaría un cambio de estado ante un aumento de referidos, pero no supimos integrar pagos ahi.
+
+    Tampoco estabamos seguros si para los propósitos del sistema, un referido es siempre un participante.
+
+   
+
+
+     *********************************
+        VER consulta_01_diagrama_v1.jpg 
+        VER consulta_01_diagrama_v2.jpg 
+        VER consulta_01_diagrama_v3.jpg 
+    *********************************
+
+
+--------------------------- RTA A CONSULTA 1 (profesor) ---------------------------
+
+    *************************************
+        VER feedback_pregunta_01_parte1.mp4
+        VER feedback_pregunta_01_parte2.mp4
+    *************************************
+
+
+----------------------- 2° CONSULTA ALUMNO -----------------------
+
+    Buenas como va?, estuve planteando la 2da iteracion del diseño de este final.
+    
+    Justificaciones
+        Participantes y referidos:
+
+            -Para obtener los datos del historial academico verifico previamente si el participante es de una univerdad interna (UDDS) y en ese caso le devuelvo su historial
+            
+            -Los participantes invitan a los referidos usando el mail y el dni del mismo, pero esto se hace desde la capa controlador ya que seria un boton el enviar invitacion
+            
+            -Cuando un referido acepta la solicitud, y envia los datos, se crea una nueva instancia de participante con los datos, se envia la notificacion al participante que lo refirio y ademas se agrega como referido a la lista del participante. Todo esto ocurre en el controlador ya que seria mediante un boton tambien. Aunque en un momento pense en hacer un command para estas 3 acciones, pero no me gusto tanto porque la primera accion tendria que devolver un participante y las otras dos no.
+       
+        Categorias:
+            -Lo plantee como recomendaste, que sea una simple clase en la que se instancian 3 objetos (bronce, plata y oro) con sus parametros costo y multiplicados (pudiendose cambiar con un setter), pero ademas con un parametro referidosNecesariosMax que al superarse se seteara la categoria del participante como la siguiente. Para esto, se debian conocer todas las categorias, esto realmente me costo, entonces decidi hacer un atributo estatico categorias, que tenga todas las categorias existentes y con eso ya conoce todas las categorias y puede realizar el cambio. Sinceramente eze dudo que esto sea lo correcto :(
+        
+        Calculo de probabilidad:
+            -En este punto decidi hacer el command para ejecutar cada uno de los calculos por separado y que cada uno decida como se calcula individualmente, el problema era que si el participante no es de la interna (UDDS) se calcula de forma distinta, para eso lo que pense es que existan 2 clases calculo de probabilidad, calculoDeProbabilidadInterna y calculoDeProbabilidadExterna. La primera tendra en su lista de comandos las 3 formas y la segunda solo la de cantidad de referidos externa, esto debido a que se calcula distinto que la interna.
+
+    ************************************
+   VER consulta_02_diagrama_v1
+    ************************************
+
+
+    *otra consulta extra de X *
+    Gracias ! Agregando a lo que dijo A(anonimo), estuve pensando una solución extensible para el tema de las categorías. La idea sería que cada participante tenga una instancia de CategoríaParticipante, que se encarga de administrar su categoría. Después esta ConjuntoCategorias, que está separado de la otra clase para que se puedan agregar fácilmente nuevas categorías sin tener que andar recorriendo todas las instancias. El método chequearCambioDeCategorias() se usaría cada vez que se agrega un referido, y determinaría la categoría si hay un cambio de categoría en base a las categorías existentes en ConjuntoCategorias.
+
+     ************************************
+   VER consulta_02_diagrama_v2
+    ************************************
+
+
+--------------------------- RTA A CONSULTA 2 (profesor) ---------------------------
+
