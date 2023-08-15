@@ -1,12 +1,20 @@
-Hola! A medida que fui resolviendo parciales , y viendo resoluciones , me voy anotando los errores mas graves a la hora de comunicar un diseño. (estas anotaciones son mias y aun no fueron validadas por nadie)
+Hola! A medida que fui resolviendo parciales , y viendo resoluciones , me voy anotando los errores mas graves a la hora de comunicar un diseño. 
+
+(estas anotaciones son mias y NO FUERON VALIDADAS POR NADIE.es decir: PUEDEN SER INCORRECTAS Frente a un profesor )
 
 1) Modelar una clase totalmente vacia: si en tu diagrama de clases aparece una clase vacia, sin metodos y atributos, ¿para que esta en tu diagrama?
 
 2) Si modelamos una herencia o una interfaz , las clases que la heredan, DEBEN implementar los metodos.
-   Al menos si no tenes tiempo para copiar todos los metodos en las clases que heredan o implementan, deja alguna anotacion que aclare eso.
+   Al menos si no tenes tiempo para copiar todos los metodos en las clases que heredan o implementan, deja alguna justificacion que aclare eso en tus decisiones de diseño.
 
 3) implementar el patron ADAPTER sin la interfaz.
     todo: poner ej tp y porque estaba mal
+
+4) metodos fuera de lugar : 
+    si modelamos el dominio, es importante colocar los metodos en el lugar correcto. nuestros metodos no tienen que referir a responsabilidades de una capa de presentacion. ejemplo: mostrar resultados o visualizar_resultado 
+    porque en nuestro dominio, que hace eso? nada. es un requerimiento que se resuelve en la capa de presentacion del sistema.
+    
+
 
 
 
