@@ -1,8 +1,6 @@
-Hello There!
-
 Repositorio de Diseño de Sistemas UTN FRBA 2023.
 
-El objetivo: material de estudio 
+Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repositorio o ponerte en contacto conmigo!
 
 ## SRC
 
