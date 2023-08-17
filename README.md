@@ -7,13 +7,14 @@ Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repo
 ### PRIMER PARCIAL
 
 - Cada carpeta hace referencia a una resolucion de un Final ( En la catedra resolvemos finales como parciales)
-- La resolucion es de algun alumno del curso y tiene sus consideraciones con RECOMENDACIONES de un PROFESOR
-- Intentar seguir los archivos dentro de cada carpeta como si fuera una conversacion de Slack/wpp.
+- La resolucion es de algún  alumno del curso y tiene sus consideraciones con RECOMENDACIONES de un PROFESOR
+- Intentar seguir los archivos dentro de cada carpeta como si fuera una conversación  de Slack/wpp.
 
 
 ### Contenido
 - El contenido de este repositorio es en base a los materiales brindados por la catedra
-- Resoluciones de alumnos con las correcciones de algun profesor
+- Resoluciones de alumnos con las correcciones de algún profesor
+
 
 ### RESUELTOS PRIMER PARCIAL / PARTE DE OBJETOS-DOMINIO
 
