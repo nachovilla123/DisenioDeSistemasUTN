@@ -1,19 +1,20 @@
-Repositorio de Diseño de Sistemas UTN FRBA 2023.
+**Repositorio para Diseño de Sistemas UTN FRBA 2023.**
 
-Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repositorio o ponerte en contacto conmigo!
+> Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repositorio o ponerte en contacto conmigo!
+
+
+[TOCM]
+
 
 ## SRC
 
 ### PRIMER PARCIAL
 
 - Cada carpeta hace referencia a una resolucion de un Final ( En la catedra resolvemos finales como parciales)
-- La resolucion es de algún  alumno del curso y tiene sus consideraciones con RECOMENDACIONES de un PROFESOR
-- Intentar seguir los archivos dentro de cada carpeta como si fuera una conversación  de Slack/wpp.
+- Para algunos parciales existen **distintas** resoluciones, cada una tiene sus defectos y ventajas! 
+- La resolucion es de algun alumno del curso y tiene sus consideraciones con **RECOMENDACIONES** de un PROFESOR
+- Intentar seguir los archivos dentro de cada carpeta como si fuera una **conversacion** de **Slack/wpp.**
 
-
-### Contenido
-- El contenido de este repositorio es en base a los materiales brindados por la catedra
-- Resoluciones de alumnos con las correcciones de algún profesor
 
 
 ### RESUELTOS PRIMER PARCIAL / PARTE DE OBJETOS-DOMINIO
@@ -28,6 +29,11 @@ Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repo
 
 #### 2019
 - CUIDANDONOS
+
+### OTRAS_CONSULTAS
+- En esta carpeta fui colocando algunas preguntas que surgieron en la cursada.
+- Muchas son interesantes y interesantes, recomiendo su lectura!
+
 
 
 # Colaboraciones
