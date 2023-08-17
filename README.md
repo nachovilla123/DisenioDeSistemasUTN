@@ -17,6 +17,18 @@ El objetivo: material de estudio
 - El contenido de este repositorio es en base a los materiales brindados por la catedra
 - Resoluciones de alumnos con las correcciones de algun profesor
 
+### RESUELTOS PRIMER PARCIAL / PARTE DE OBJETOS-DOMINIO
+
+#### 2023
+- ESTIM (Al menos 3 versiones distintas)
+- SERVICIO DE ATENCION AUTOMOTOR
+
+#### 2022
+- NOTESBOX (Al menos 2 versiones distintas)
+- LA UNIVERSIDAD TE LLEVA A CATAR
+
+#### 2019
+- CUIDANDONOS
 
 
 # Colaboraciones
