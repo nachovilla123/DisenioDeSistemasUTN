@@ -1,0 +1,51 @@
+ej: opcion
+
+    desarrolle definicion sistema
+
+    DDS es divertido? si/no 
+
+    
+COMENTARIO: adapta este modelo de problema a lo que vos necesites. 
+tal vez en tu dominio no necesitas tener la clase Opcion
+porque tu dominio no necesita preguntas multiple choise.
+
+@startuml
+
+Cuestionario -->"*" Pregunta
+CuestionarioContestado --> Cuestionario
+CuestionarioContestado -->"*" Respuesta
+Respuesta --> Pregunta 
+
+class Cuestionario {
+
+    list<Pregunta> preguntas
+}
+
+class Respuesta {
+    Pregunta
+    List<Opcion>valorRespondido
+}
+
+class Pregunta {
+    preguntaConcreta
+    TIPO pregunta
+
+}
+Pregunta  --> TIPO
+enum TIPO {
+    RESPUESTA MULTIPLE , DESARROLLO, ETC
+}
+
+Respuesta -->"*" Opcion 
+Pregunta -->"*" Opcion
+
+class Opcion {
+    opcionConcreta
+    boolean esCorrecta
+}
+
+
+
+@enduml
+
+

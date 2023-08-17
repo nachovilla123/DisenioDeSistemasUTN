@@ -1,0 +1,10 @@
+ej: opcion
+
+    desarrolle definicion sistema
+
+    DDS es divertido? si/no 
+
+    
+COMENTARIO: adapta este modelo de problema a lo que vos necesites. 
+tal vez en tu dominio no necesitas tener la clase Opcion
+porque tu dominio no necesita preguntas multiple choise.
