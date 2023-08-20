@@ -1,0 +1,33 @@
+
+
+----------------------- 1° CONSULTA ALUMNO -----------------------
+
+V1
+    •	En relacion con los campos variables de los dominios, al ser necesario tener campos precargados, cree un Campo y un CampoCargado asociado, con varios Valores cada uno, de los cuales debe elegir el Perfil.
+    
+    •	A su vez, hay un AreaDeBusqueda asociada al dominio y a un perfil al cual se le presenta una serie de perfiles de dicho dominio (el Dominio tiene la lista de todos los perfiles asociados al mismo), uno por uno.
+   
+    •	Esta AreaDeBusqueda posee una serie de filtros en relacion a los Valores de unos respectivos Campos.
+    
+    •	Podria dejarle la tarea de busqueda al Dominio en si, pero pensando en que puede haber mas de una busqueda al mismo tiempo, considero necesario hacer una clase a parte (llamada AreaDeBusqueda). En este caso, cada perfil podria estar haciendo una busqueda al mismo tiempo.
+   
+    •	Cuando el usuario le da “like” a un perfil en una busqueda, se agrega a sus perfilesDeInteres. El metodo “hacerMatch” hace justamente eso.
+    
+    •	Cada cierto tiempo (por un Cron), el Dominio ejecuta “generarMatch” que recorre la lista de perfiles y en caso de que se cumplan las condiciones (si es de match tipo SIMPLE agrupa si hay 2 que esten interesados entre si; si es de tipo MULTIPLE agrupa si se excede del nro minimo de participantes del Dominio), genera el match. Esto implica hacer un “new Match” y agregarle los perfiles correspondientes. Ademas, se le avisa a los Interesados en ese Dominio que se realizo un nuevo Match.
+    
+    •	En relacion con el tipoPerfil, lo dividi en dos: el VISIONARIO y el EJECUTOR. El primero refiere al musico o emprendedor, y el segundo a la banda o el inversor. Estos dos conceptos aplican indistintamente para cualquier Dominio.
+
+    *********************************
+        VER diagrama_consulta_01.PNG 
+        VER paint_consulta_01.PNG
+    *********************************
+
+
+--------------------------- RTA A CONSULTA 1 ---------------------------
+
+    *********************************
+        ESCUCHAR_ feedback_rta_01.mp4
+    *********************************
+
+
+----------------------- 2° CONSULTA ALUMNO -----------------------

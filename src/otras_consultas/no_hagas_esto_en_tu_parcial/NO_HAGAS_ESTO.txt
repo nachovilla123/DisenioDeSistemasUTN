@@ -15,6 +15,8 @@ Hola! A medida que fui resolviendo parciales , y viendo resoluciones , me voy an
     porque en nuestro dominio, que hace eso? nada. es un requerimiento que se resuelve en la capa de presentacion del sistema.
     
 
+5) En la capa de dominio , no tener entidades de tipo ADMINISTRADOR, USUARIO (roles del sistema).
+    ej: final estim existe un actor usuario que compra juegos. lo podemos llamar Miembro o Jugador
 
 
 
