@@ -27,6 +27,9 @@
 - NOTESBOX (Al menos 2 versiones distintas)
 - LA UNIVERSIDAD TE LLEVA A CATAR
 
+#### 2021
+- GESTION DE CONSORCIOS
+
 #### 2019
 - CUIDANDONOS
 
