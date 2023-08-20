@@ -1,0 +1,54 @@
+Hola! Como va? Estuvimos haciendo el ultimo final con @M y  @F y llegamos a dos diagramas distintos. 
+
+Te dejo las decisiones de diseño que pensamos en ambas y el diagrama de clases a ver si nos podes dar una mano
+
+
+-------------------------------------------- Diagrama 1 --------------------------------------------
+    -Gastos
+        Para la parte de gastos, pensamos en un tipo de gasto simplemente como una clase Tipo con un nombre, debido a que no sabemos cuantos tipos puede haber. pero el tipo de expensa si los conocemos entonces usamos un enum. Luego para la recurrencia usamos un simple bool y que el admin decida marcar el que vea correspondiente.
+    
+    -Consorcio
+        Pensamos en que un consorcio conoce tanto sus gastos, sus unidades funcionales y su cuenta bancaria. Para la cuenta bancaria usamos un adapter para adaptarnos con el componente creado por el otro equipo, y para obtener el saldo segun CBU u Alias pensamos en usar de forma polimorfica el metodo getSaldo(CBU o Alias, ..., ...) donde solo cambia el primer elemento.
+    
+    -Unidad funcional
+        Una unidad funcional va a tener muchos interesados (propietarios e inquilinos por el momento) y una lista de expensas. Una vez que se requiera calcular la expensa, se deberar pasar por parametro el criterio de calculo. Al no saber que recibe ninguna de las funciones que calculan cosas, supusimos que con pasarle la unidad funcional alcanzaria, ya que se calculan las expensas de la misma. Como el enunciado dice que se calcula segun 3 pasos, donde 2 son siempre iguales usamos un template method, para que luego, cada critero calcule el ultimo paso a su manera. El calculo de los 3 criterios devuelve una expensa que tiene toda la info necesaria, ademas de si esta pagada. 
+        Cabe aclarar que una vez que se requiera calcular una expensa, luego de calcularla deben pasar 3 cosas: obtener la expensa, agregarla a la lista, y notificar a los interesados, todo esto se llamaria desde el controlador. P
+
+
+
+-------------------------------------------- Diagrama 2 --------------------------------------------
+    -la lógica de obtener el saldo del banco es una injeccion de dependencias, para permitir un fácil cambio y desacoplarlo del sistema
+    ninguno de los tipos de gasto tiene comportamiento propio, por lo que no es necesaria mas de una clase. La recurrencia la maneja consorcio
+   
+    -Gasto mensual recibe cuando se crea el saldo de las reservas de ese mes, y el total de gastos se calcula con su lista de Gastos. Despues recibe como parametro el criterio para la ultima parte del calculo.
+    Consorcio despues divide los gastos entre las unidades, creando un ExpensaMensualUnidad. Con este ultimo y su deuda, la Unidad puede crear su resumen del mes
+    
+    -Medios de contacto
+        En ambos diagramas, el requerimiento fue modelado de manera muy similar. Ambos tienen medios de contacto que puede ser configurado en momento de ejecución y que se adapta a los componentes externos mediante un adapter para el envio por SMS, Mail o Whatsapp segun los distintos medios de contacto que tenga el interesado (propietario o inquilino)
+
+
+*********************************************
+    VER: diagrama_01_consulta_01
+    VER: diagrama_02_consulta_01
+*********************************************
+
+
+
+--------------------------------------------- RESPUESTA 01 PROFESOR ---------------------------------------------
+
+    *********************************************
+    ESCUCHAR: feedback_consulta_01
+    *********************************************
+
+
+--------------------------------------------- CONSULTA 02 ALUMNOS ---------------------------------------------
+
+    Una consulta, es necesario que haya una entidad llamada consorcio con las unidades funcionales y la cuenta bancaria? Yo lo considere como que eran datos que se obtenian de la base de datos, si hice el adapter para obtener el saldo de la cuenta bancaria pero para eso utilicé una entidad ObtenedoraDeSaldo que adapta el componente para obtenerlo y despues se usa en el criterio.
+    También quería preguntar si hace falta la entidad notificación ( el texto dice 'El sistema posee un componente de Notificaciones' pero no entendí si se referia literal a una entidad notificacion o si se refiere a que en el sistema se envian notificaciones)
+    Gracias!
+
+--------------------------------------------- RESPUESTA 02 PROFESOR ---------------------------------------------
+
+
+
+
