@@ -21,6 +21,7 @@ class Pregunta {
 
 }
 Pregunta  --> TIPO
+
 enum TIPO {
     RESPUESTA MULTIPLE , DESARROLLO, ETC
 }
@@ -29,9 +30,13 @@ Respuesta -->"*" Opcion
 Pregunta -->"*" Opcion
 
 class Opcion {
-    opcionConcreta
+    string opcionConcreta
     boolean esCorrecta
 }
+
+
+
+
 
 
 
