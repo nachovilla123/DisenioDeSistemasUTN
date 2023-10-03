@@ -1,0 +1,28 @@
+
+-------------------------------- ALUMNO A CONSULTA 01 --------------------------------
+Buenas! Estoy con muchas dudas del final de Gestion de Consorcios, dejo mi propuesta. Creo que la decicion de diseño esta media pobre
+
+-------------------------------- ALUMNO B CONSULTA  02 --------------------------------
+
+ALUMNO B CONSULTA 
+Hola! Yo también estuve resolviendo este final hoy.
+Sumo unas preguntas:
+ -Es apropiado agregarle al interesado un enumerado para identificar si es propietario o inquilino?
+ - En alcance y requerimientos dice que el servicio de notificaciones queda fuera de alcance. Al mencionarnos esto, debemos modelar en nuestro sistema las entidades smsSender,wppSender y sus interfaces necesarias?
+
+-Al estar modelando la capa de dominio tenemos prohibido modelar un administrador :temeroso:, como guardo registro del administrador que activo el cálculo de expensas?
+Un string nombreDelActivador sería correcto y suficiente ?
+
+
+-------------------------------- RTA PROFESOR : ALUMNO A CONSULTA 01 --------------------------------
+
+ la propuesta en general es correcta. Fijate de detallar más las justificaciones punto por punto. Siempre te conviene ir a los requerimientos y justificar como los estás cumpliendo.
+
+
+-------------------------------- RTA PROFESOR : ALUMNO B CONSULTA 02 --------------------------------
+
+ te dejo algunas respuestas.
+- Si podés indentificarlo de esa manera.
+- No es necesario, si una forma de conectarte.
+- Podés modelar la clase Usuario o dejar un String para referenciarlo.
+
