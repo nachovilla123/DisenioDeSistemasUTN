@@ -1,0 +1,86 @@
+
+--------------------------- ALUMNO: CONSULTA 01 ---------------------------
+
+Buenas, como va? Estuve haciendo el parcial "Bolsa de Trabajo" y llegue a una solución. Solo hice el diagrama de clases, no escribí las decisiones de diseño, pero si hay algo que genera duda las aclaro. Quería saber si tengo algún error muy grave o cosas que podría corregir/mejorar. Para lo único que use patrones fue para el manejo de las notificaciones, use un strategy y un adapter. Después, para el TipoDeTrabajo hice que sea una interfaz y que Presencial y Remoto la implementen por el tema de la construcción del título, sino podría ser un Enum. Lo que no me termina de quedar muy en claro, es donde yo debería verificar que el postulante cumple con los requisitos, yo lo puse dentro de la OfertaLaboral por un hecho de que ahí estaban los requisitos y en caso de que no los cumpla, jamás existiría Postulación, pero me genera dudas si también podría ir dentro de la Postulación y que según cumpla o no los requisitos la Postulación tenga una especie de estado algo, así como "aceptada" o "denegada". Por último, sobre los requisitos en sí no decía nada en particular, yo lo modele como una interfaz que tiene una firma de método que valida que un postulante cumpla ese requisito en particular, pero no estoy seguro.
+
+
+--------------------------- RTA PROFESOR A CONSULTA 01 ---------------------------
+
+ESCUCHAR feedback_01.mp4
+
+
+
+--------------------------- ALUMNO: CONSULTA 02 ---------------------------
+
+
+Hola , unas consultas respecto a este parcial, yo las nacionalidades, las modalidades, los idiomas y las categorias las habia pensado como enums, esto estaría mal? se que es más facil por tema de extensibilidad que sea una clase pero como no encontre ningun comportamiento pensé que era mejor enums (al menos en el caso de idioma y nacionalidades, que digamos que son "fijas" como en las páginas que te sale el menú para seleccionar paises). Con los tipos me pasó lo mismo, no lo puse como interfaz porque no encontré que tengan ningún comportamiento.
+También quería consultar respecto al generador de imagenes, recomendador y notificador. Yo los pensé así pero quería preguntarte si tendría que corregirlos.
+
+
+
+VER IMAGENES EN CARPETA: images_consulta_02
+
+
+--------------------------- RTA PROFESOR A CONSULTA 02 ---------------------------
+
+ESCUCHAR feedback_02.m4a
+
+
+
+--------------------------- ALUMNO: CONSULTA 03 ---------------------------
+
+
+Entonces recomendador tendria que tener un método generarRecomendacion(persona) ? nosotros  sabemos que para generar estas recomendaciones se basa en las ofertas favoritas de la persona pero no sabria si hay que aclarar algo más. Tendría que tener una clase recomendación?
+Con respecto al generador de imagenes, sería correcto que devuelva un string, siendo el string el path de la imagen generada?
+Lo del notificador me quedó claro!
+
+
+--------------------------- RTA PROFESOR A CONSULTA 03 ---------------------------
+
+ESCUCHAR feedback_03.m4a
+
+Sí, deberías tener ese método en el recomendador. Y sí, también estaría bueno que tengas una entidad de "Recomendación" con el detalle generado..
+Respecto al generador de imágenes, sí, debería devolver el path a la imagen generada!
+
+
+
+--------------------------- ALUMNO: CONSULTA 04 ---------------------------
+
+
+Una última duda, no termino de entender porque el Tipo debe ser una interfaz aunque no tenga comportamiento, osea, entiendo que es para que pueda ser uno u el otro pero pense que si o si debian tener algo para que tenga sentido que implementen una interfaz.
+Sería correcto además que el lugar sea un atributo de la oferta pero que quede en null si la oferta es de tipo remoto?
+
+
+
+--------------------------- RTA PROFESOR A CONSULTA 04 ---------------------------
+
+ESCUCHAR feedback_03.m4a
+ESCUCHAR feedback_04.m4a
+
+
+
+
+
+
+--------------------------- ALUMNO: CONSULTA 05 ---------------------------
+
+
+Hola , me meto en la discusión sobre este ejercicio con un par de consultas.
+
+1 Estaría bien modelar que, en lugar de que la OfertaLaboral tenga por atributo a la Empresa, que la Empresa mantenga una lista de sus ofertas laborales?
+
+2 También cómo verías que la empresa posea un listado de MedioNotificacion? Así depende de la empresa, no de la oferta, y se puede configurar ambos medios o más si se añade
+
+3 Cómo sería una correcta respuesta teórica en el parcial? Cuando nos pide que apliquemos al dominio del problema los atributos de calidad de software y que describamos un requerimiento no funcional
+
+Desde ya muchas gracias
+
+--------------------------- RTA PROFESOR A CONSULTA 05 ---------------------------
+
+VER feedback_05.mp4
+
+--------------------------------------------------------------
+
+
+Genial, muchísimas gracias. Respecto a las preguntas teóricas me estaba costando porque estaba buscando esos requerimientos de forma textual en el enunciado, ahora entendí bien qué es lo que hay que hacer. Saludos
+
