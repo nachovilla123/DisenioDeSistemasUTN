@@ -3,11 +3,6 @@
 > Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repositorio o ponerte en contacto conmigo!
 
 
-[TOCM]
-
-
-## SRC
-
 ### PRIMER PARCIAL
 
 - Cada carpeta hace referencia a una resolucion de un Final ( En la catedra resolvemos finales como parciales)
