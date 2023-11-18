@@ -1,0 +1,114 @@
+//todo cambiar nombre
+
+
+
+1. (5 puntos) Enumere las entidades identificadas y mencione, de forma concisa, qué representa cada una de ellas.
+
+- persona
+- necesidadDeTraduccion
+- TipoDeTraduccion -> Actualmente es texto y doc. pero pueden surgir mas.
+- Idioma -- porque pueden surgir nuevos
+- TAGS 
+- Traductor
+- Presupuesto 
+- Medio de pago
+- Medio de notificacion
+- MensajeNotificacion 
+
+---------------- Deciciones de Punto (1) ----------------
+
+- Persona: Entidad que creara necesidades de traduccion.
+
+- NecesidadDeTraduccion : Para el monitoreo de la traduccion, eleccion de presupuestos,  traduccion.
+
+- Idioma: Moldeado como entidad porque desconozco si surgen nuevos idiomas dia a dia. Sino seria un enumerado y desaparece esta entidad.
+
+-TAGS: se menciona que se pueden asignarle tags a una NececidadTraduccion. Pueden surgir nuevos TAGS. Objetivo: mejorar criterios de busqueda.
+
+- Presupuesto: Moldeado como entidad para tener mejor control sobre el desarrollo de un presupuesto.
+
+- Medio de pago: para poder guardar el medio de pago seleccionado por la persona/traductor y los atributos que le correspondan.
+
+- Medio de notificacion: para poder guardar el medio de notificacion seleccionado por la persona/traductor y los atributos que le correspondan.
+
+-MensajeNotificacion: para guardar trazabilidad de los mensajes enviados en el medioDeNotificacion.
+
+
+
+
+------------------------------
+
+Persona {
+    String nombre
+    String apellido
+    LocalDate FechaNacimiento
+    List<NececidadTraduccion>  traduccionesSolicidatas
+}
+
+
+ARQUITECTURA:
+
+1) 1) Por el momento no creo que sea beneficioso usar un SSO porque por el momento no se menciono otro sistema
+para ingresar con las mismas credenciales. en el caso de que surgiera o fuera necesario incorporar acciones en otro sistema podria considerarse.
+
+
+2)
+Evaluar propuestas en base a :
+• Performance
+• Mantenibilidad
+• Escalabilidad
+
+propuesta A: 
+
+Performance: Alta performance por tener un cliente liviano con el codigo del frontend en el mismo servidor que el backend. Aunque Tambien, la performance depende de como este implementado el codigo de la aplicacion,  un simple diagrama no nos permite ver todo el panorama.
+
+Mantenibilidad: 
+Esto no es tan mantenible porque no se puede hacer una separacion del codigo del back y del front. Empieza a escalar y crecer mucho ambos codigos.
+
+
+Escalabilidad: 
+para esclarar horizontalmente, hay que implementar un load balancer para 
+pero si se puede escalar VERTICALMENTE porque podemos mejorar el hardware del servidor.
+
+ademas si escalamos de la forma que escalemos, mejoraremos el front y el back al mismo tiempo. 
+Lo cual puede no ser favorable si el backend hace mucha logica y necesita aumentar su capacidad mientras que el frontend no.
+
+
+
+
+Propuesta B:
+Performance: 
+La performance bajara porque el cliente debe viajar hasta el backend para comunicarse.
+
+Mantenibilidad:
+mejor separacion del codigo por lo que aumenta la mantenibilidad y entendimiento del proyecto.
+
+
+Escalabilidad:
+Aumenta la facilidad para escalar vertical y horizontalmente , porque en el caso de necesitar mejora en el backend y no en el fronted, se puede hacer al estar separados ambos conceptos.
+Tal vez 1 frontend puede ser suficiente para 2 backends que procesan la logica.
+
+
+
+
+3) Usaria la opcion B porque el frontend cambiara y estara separada la logica del backend lo que permitira un desarrollo por separado. Al tener todo el codigo en un lugar separado, solamente cambiaremos su implementacion y nos adaptaremos a la API del backend.
+Ademas en caso de necesitar mejorar el backend, podremos escalarlo sin necesidad de mejorar/modificar el nuevo frontend.
+
+
+
+4) Al hablar de cola de mensajes, estamos hablando indirectamente de codigo que se ejucutara asincronicamente. Lo que permitira "mentir" sobre la ejecucion de las cosas y realizarlas sin que el cliente este esperando su resolucion en tiempo real.
+Me inclino nuevamente por la segunda opcion para la implementacion de la cola de mensajes. Porque puedo tener varios backends separados consumiendo de la cola de pagos pendientes de realizacion. 
+Y en caso de querer aumentarle el procesamiento a mi backend, puedo hacerlo comprandole mas recursos como procesador o memoria.
+
+
+
+
+
+
+------------------------------------------------------
+
+
+persistencia con annotations en:
+
+https://github.com/nachovilla123/GuiaPersistenciaORM/tree/persistencia_ejercicio_02
+

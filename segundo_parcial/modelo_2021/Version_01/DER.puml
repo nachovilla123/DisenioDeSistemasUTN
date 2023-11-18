@@ -1,0 +1,143 @@
+@startuml
+
+entity "Persona" {
+  +ID : long <<PK>>
+  --
+  Nombre : string
+  Apellido : string
+  FechaNacimiento :Date
+  MedioDeNotificacion : char(5)
+  MedioDePago : char(5)
+}
+
+entity "NecesidadDeTraduccion" {
+  +ID : long <<PK>>
+   traductor_id : long <<FK>> (el que la desarrolla)
+  --
+  DescripcionPersona : string
+  FechaDeCreacion: date
+  CantidadDePaginas : int
+  cantidadDePalabrasAproximadas : int
+  nivelUrgencia : char(15)
+  nivelConfidencialidad : char(15)
+  pathArchivoOriginal : Varchar(255)
+  fuePagadaPorPersona : boolean
+
+
+  comentarioTraductor : Varchar(255)
+
+
+}
+
+
+
+entity "TipoDeTraduccion" {
+  +ID : long <<PK>>
+  Tipo : Varchar(255)
+
+}
+
+entity "Idioma" {
+  +ID : long <<PK>>
+  Nombre : Varchar(255)
+
+}
+
+entity "Tags" {
+  +ID : long <<PK>>
+  Nombre : Varchar(255)
+  descripcion : Varchar(255)
+}
+
+entity "Traductor" {
+  +ID : long <<PK>>
+   medioDePagoId : long <<FK>>
+   --
+  Nombre : string
+  Apellido : string
+  Calificacion int;
+  frecuenciaEnDias : int
+  cantidadDeTraduccionesRealizadas : int
+  promedioDeResolucionEnDias : float
+
+
+
+}
+
+entity "Presupuesto" {
+  +ID : long <<PK>>
+  traductor_id : long <<FK>>
+  --
+  Precio : float
+  Moneda : char(5)
+  fechaResolucionEstimada : Date;
+  cantidadDiasPresupuestoEsValido : int
+  comentario : Varchar(255)
+
+
+}
+
+
+entity "MensajeNotificacion" {
+  +ID : long <<PK>>
+  --
+  titulo : varchar(255)
+  Contenido : varchar(255)
+  fueEnviado : boolean
+  fechaAEnviar : Date
+  FechaEnviado : Date
+
+
+}
+
+
+entity PresupuestosOfrecidosANecesidadTraduccion {
+ presupuesto_id : long <<FK>>
+ necesidadDeTraduccion_id : long <<FK>>
+ fueElegido: boolean
+}
+
+
+entity TagsXNecesidadDeTraduccion {
+ tags_id : long <<FK>>
+ necesidadDeTraduccion_id : long <<FK>>
+}
+
+
+entity IdiomasXNecesidadDeTraduccion {
+ idioma_id : long <<FK>>
+ necesidadDeTraduccion_id : long <<FK>>
+ esIdiomaDestino : boolean
+}
+
+
+entity PathResoluciones {
+    NececidadDeTraduccion_id : long <<FK>>
+    path : Varchar(255)
+}
+
+Traductor ||--o{  NecesidadDeTraduccion
+
+Persona ||--o{ NecesidadDeTraduccion
+
+NecesidadDeTraduccion }o--o| PresupuestosOfrecidosANecesidadTraduccion
+PresupuestosOfrecidosANecesidadTraduccion ||--o{ Presupuesto
+
+NecesidadDeTraduccion }o--o| TagsXNecesidadDeTraduccion
+TagsXNecesidadDeTraduccion ||--o{ Tags
+
+NecesidadDeTraduccion }o--|| TipoDeTraduccion
+
+NecesidadDeTraduccion }o--o| IdiomasXNecesidadDeTraduccion
+IdiomasXNecesidadDeTraduccion ||--o{ Idioma
+
+
+Persona ||--o{ MensajeNotificacion
+
+
+
+Presupuesto }o--o| Traductor
+
+PathResoluciones }o--o| NecesidadDeTraduccion
+
+@enduml
