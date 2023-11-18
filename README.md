@@ -17,6 +17,7 @@
 #### 2023
 - ESTIM (Al menos 3 versiones distintas)
 - SERVICIO DE ATENCION AUTOMOTOR
+- TINDERZ
 
 #### 2022
 - NOTESBOX (Al menos 2 versiones distintas)
@@ -24,6 +25,7 @@
 
 #### 2021
 - GESTION DE CONSORCIOS
+- BOLSA DE TRABAJO
 
 #### 2019
 - CUIDANDONOS
