@@ -1,0 +1,20 @@
+Estábamos haciendo el final de "La universidad te lleva a Catar" y teníamos una duda respecto a cómo responder esta pregunta de Arquitectura. 
+
+El Sistema del final se integra por API REST al ArU22, pero si dicho sistema tiene que llamar a cada una de (por ejemplo) las APIs que expongan las universidades, sería muy lenta la respuesta con lo cual nos íbamos a inclinar por algo asincrónico o pensar en una caché saliente para preguntar una vez por todos los alumnos y que los tenga disponible el mismo sistema. 
+
+O un Patrón Broker pero que el único receptor sea este sistema. 
+
+Pero no estamos muy conformes con cómo lo redactamos. Gracias! 
+
+
+--------------------
+ver consulta1.png
+--------------------
+
+
+---------------------------------------------
+Escuchar:
+
+feedback_parte1.mp4
+feedback_parte2.mp4
+
