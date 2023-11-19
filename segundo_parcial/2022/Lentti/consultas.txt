@@ -1,0 +1,32 @@
+---------------- CONSULTA ALUMNO A ----------------
+
+Estaba resolviendo el parcial de Lentti y me surgieron un par de dudas al momento de compararlo con la resolucion de la clase de consulta.
+
+1) que tan importante es la existencia de municipio y provincia si existen zonas(localidades) predefinidas, entiendo que existen delimitaciones como zona norte, zona sur, zona oeste, CABA, me parece que no tendria mucho sentido que esten municipio y provincia
+
+2)la tabla de pedido_posible_estado tambien la veo algo innecesaria, integrar todo en pedido_estado me parece lo mas logico
+
+3)Me hace ruido que no haya una tabla de medioDePago
+
+4)En caso de tener opciones default en una cuenta como el medio de pago o la propina, pero que tambien se pueden alterar en el pedido. Tendria sentido generar esa repeticion?
+
+5)Me hace algo de ruido que no se modele la notificacion luego de leer este pasaje: "el restaurante notifica a todos los repartidores disponibles (aquellos sin una entrega en curso) de la zona para que alguno lo tome." Que tambien sugiere que los repartidores poseen un estado (estimo disponible, repartiendo)
+
+
+---------------------------- RESPUESTA PROFESOR ----------------------------
+
+Contesto tus preguntas en orden:
+
+1) La dirección es muy muy importante para este dominio, porque hay que realizar entregas en domicilios particulares. En ese sentido, es muy importante que esté normalizado lo mayor posible. Con el dato de la Zona únicamente, estás perdiendo mucha info que sería súper relevante.
+
+2) Depende de cómo tengas modelados tus estados. ¿Cómo los pensaste? Si son enumerados, entonces sí podríamos ir por tu propuesta. Si queremos dinamismo, entonces deberíamos ir por la que propusimos nosotros en la clase de consulta.
+
+3) No tiene sentido que exista dichosa tabla. ¿Si agrego un nuevo medio de pago en esa tabla, automáticamente ya estaría integrado con el mismo? Claramente NO, pues para integrarme con un nuevo medio de pago necesito código.
+
+4) Sí, porque si tenes opciones por default y no las guardas en la cuenta del cliente, ¿dónde lo estarías guardando? Es necesario tener la opción por defecto en el cliente y la real en el pedido.
+
+5) Si no es requerimiento que estén persistidas las notificaciones, no hace falta que lo hagas. Podrías enviar las notificaciones a través de algún servicio y no mantener su persistencia. Esto depende de tu propuesta y de cómo te imagines/modeles la entrega de notificaciones.
+
+Hay una clase de consulta grabada de esto, que si mal no recuerdo tocamos varios temas de los que consultaste (más allá de que el diagrama esté subido y que lo mencionaste e hiciste consideraciones/correcciones sobre el mismo)!
+Cualquier cosa me avisas
+
