@@ -1,0 +1,112 @@
+@startuml
+
+Entity Juego{
+    id : Long <PK>
+    genero_id : Long<FK>
+    --
+    Nombre :  Varchar(255)
+    Requerimiento_CPU : Varchar(255)
+    Requerimiento_GPU : Varchar(255)
+    Requerimiento_RAM : Varchar(255)
+    precio_Venta : Double
+
+}
+
+Entity Genero{
+    id : Long <PK>
+    esObligatorio : Boolean
+}
+
+Entity Atributo_x_genero{
+    id_genero : Long <FK>
+    id_atributo : Long <FK>
+}
+
+Entity AtributoCargado{
+     id : Long <PK>
+     id_atributo : Long <FK>
+ }
+
+Entity Atributo{
+     id : Long <PK>
+     esObligatorio : Boolean
+     Opcion : varchar(255)
+}
+
+
+Entity Compra{
+     id : Long <PK>
+     miembroEstim_id : Long <FK>
+     juego_id : Long <FK>
+     DLC_id : Long <FK>
+     --
+     precio : double
+     fecha : Date
+     medioPagoIdentifier :char(2)
+ }
+
+Entity MiembroEstim{
+     id : Long <PK>
+     --
+     esSospechosoDeFraude : char(1)
+     medioPagoIdentifier : char(2)
+}
+
+Entity JuegosAdquiridos{
+    id_juego : Long <FK>
+    id_MiembroEstim : Long <FK>
+}
+
+Entity Prestamo{
+     id : Long <PK>
+     prestador_id : Long <FK>
+     tomador_id : Long <FK>
+     juego_id : Long <FK>
+     DLC_id  : Long <FK>
+    --
+    fechaComienzo : Date
+    FechaFin : Date
+}
+
+
+
+Entity DLC{
+     id : Long <PK>
+     juego_id : Long <FK>
+     --
+     precioDeVenta : Double
+}
+
+
+
+Juego ||--o{ DLC
+Juego }o--|| Genero
+
+AtributoCargado }o--|| Atributo
+Juego ||--|{ AtributoCargado
+
+Atributo_x_genero }o--|| Atributo
+Atributo_x_genero }o--|| Genero
+
+MiembroEstim ||--o{ JuegosAdquiridos
+JuegosAdquiridos }o--|| Juego
+
+Compra }o--o| DLC
+Compra }o--o| Juego
+Compra }o--|| MiembroEstim
+
+
+Prestamo  }o--|| MiembroEstim
+Prestamo  }o--|| MiembroEstim
+Prestamo  }o--o| Juego
+Prestamo  }o--o| DLC
+
+}
+
+@enduml
+
+
+La relacion ManyToMany entre Genero y Atributo es porque establecemos que los atributos
+se persisten en el sistema y luego se eligen por preferencia.
+
+No voy a tener 200 filas con la pregunta: EsParaMayoresDeEdad. pero si referencias a esa pregunta.

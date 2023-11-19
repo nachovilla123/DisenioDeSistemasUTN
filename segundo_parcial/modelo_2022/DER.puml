@@ -1,0 +1,8 @@
+@staruml
+
+Entity <|-- Person
+
+Entity Person{
+    ID_PERSONA PÑ
+}
+@enduml
