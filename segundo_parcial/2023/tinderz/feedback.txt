@@ -1,0 +1,11 @@
+1- "Está bien poner una entidad intermedia como nombreTabla1_nombreTabla2? No era que si nos quedaba así, algo no estábamos entendiendo del dominio?" -> a_b  no implica que directamente ESTE MAL o me esté olvidando una abstracción. Les dije varias veces que: si C es una entidad intermedia SIMPLE, entonces sí puede llamarse a_b; pero si C es compleja y guarda más cosas, entonces sí probablemente esté representando una abstracción más relevante en mi dominio.
+
+2. Punto 1 arq: La opción ideal sería ir por la propuesta de Master Slave. La caché no sería tan viable porque deberías cachear por cada usuario sus próx. 10, lo que de todas formas te consumiría muchos recursos (e inclusive más!)
+
+3. Punto de arq - Adapter: Mal. No comprende la propuesta, ya que el enunciado menciona un adapter saliente para el vinculador, no un adapter saliente para el broker. No tiene sentido que el broker delegue el trabajo en un adapter como se plantea. En este dominio, al ya saber que nos vamos a integrar a un broker, no tiene sentido implementar un adapter porque la estrategia para que nuestro Vinculador notifique siempre va a ser a través del Broker.
+
+4. Modelo de Datos: La entidad Like podría tener referencia al Match que se generó.
+
+5. La tabla "Foto" es un montón, ya que solamente tiene una única columna.
+
+6. [GRAVE] Nuevamente problemas en el modelado del modelo "Pregunta - Respuesta" (Dominio - campo - valor - perfil)
