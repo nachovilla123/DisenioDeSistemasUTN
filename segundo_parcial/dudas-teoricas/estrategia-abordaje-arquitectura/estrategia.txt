@@ -1,0 +1,28 @@
+Buenas noches! Se que muchos están estudiando y les queremos dejar una consideración para arquitectura
+
+Les dejo una estrategia de abordaje
+
+1) Plantear o Comprender el Escenario de Aplicación
+2) Problema a Resolver
+3) Enumerar el Atributo de Calidad que está en juego.
+4) Definir el atributo de Calidad, de esa manera entendemos de que nos referimos a lo mismo.
+5) Justificar con aspectos técnicos la solución/abordaje propuesto.
+
+
+Vamos a un ejemplo:
+
+
+Suponiendo y considerando que el Sistema cuenta con una arquitectura web Stateful, con varios servidores atendiendo solicitudes de forma simultánea, lea el siguiente escenario y conteste las preguntas: “Varios usuarios han reportado que, mientras utilizan la plataforma (previamente logueados), el Sistema los vuelve a llevar a la pantalla de Inicio de Sesión, teniendo que volver a ingresar sus credenciales para continuar con su labor.”
+
+1) Se cuenta con una arquitectura de varios servidores que guardan (de alguna manera) la sesión del usuario. Delante de estos Servidores tengo un Balanceador de Carga.
+
+2) Que el Usuario no tenga que loguearse nuevamente o que no se pierda su sesión
+
+3) En este caso podemos analizarlo desde la Disponibilidad o Usabilidad (si consideramos que el sistema sigue funcionando pero se pierde calidad en la experiencia del usuario)
+
+4)Disponibilidad: Se trata de la capacidad de un sistema, a ser accesible y utilizable por los usuarios/procesos lo requieran.
+
+5) Para resolver esta situación se pueden diferentes abordajes:
+5.a) Balanceador con Sticky-Sesion: En balanceador de carga enviará al Usuario siempre al mismo Servidor que lo envió por primera vez. En caso de que el Servidor no se encuentre disponible, seguirá perdiendo la sesión.
+
+5.b) Espacio de Almacenamiento de Sesión Compartida: Sumar un Componente a la Arquitectura que guarde las sesiones y sea compartido por todas las instancias de Servidor. Por ejemplo una Base de Datos Clave-Valor como Redis.
