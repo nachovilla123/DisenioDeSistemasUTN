@@ -8,7 +8,7 @@ Esto quiere decir que las aplicaciones de cliente pesado son SPAs? O estoy confu
 
 --------------------- CONSULTA ALUMNO B ---------------------
 
-holis me meto jaja, igual despues habra que ver que dice eze pero yo tenía entendido que las SPAs son clientes pesados (porque todo el manejo de cambio de vistas se genera del lado del cliente con código tipo js, el servidor le pasaría toda la info de todas las vistas pero se van mostrando de a una) pero no se si todos los clientes pesados son SPAs
+holis me meto jaja, igual despues habra que ver que dice PROFESOR pero yo tenía entendido que las SPAs son clientes pesados (porque todo el manejo de cambio de vistas se genera del lado del cliente con código tipo js, el servidor le pasaría toda la info de todas las vistas pero se van mostrando de a una) pero no se si todos los clientes pesados son SPAs
 
 
 --------------------- RESPUESTA PROFESOR ---------------------
