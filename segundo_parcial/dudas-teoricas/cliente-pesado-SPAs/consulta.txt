@@ -1,0 +1,16 @@
+--------------------- CONSULTA ALUMNO A---------------------
+
+Buenas! Tengo una pregunta teórica de cliente pesado y SPAs. 
+
+Si no recuerdo mal en una clase se había mencionado que las aplicaciones de cliente pesado no recargaban la página cuando cambiaban de vista. 
+
+Esto quiere decir que las aplicaciones de cliente pesado son SPAs? O estoy confundiendo conceptos? 
+
+--------------------- CONSULTA ALUMNO B ---------------------
+
+holis me meto jaja, igual despues habra que ver que dice eze pero yo tenía entendido que las SPAs son clientes pesados (porque todo el manejo de cambio de vistas se genera del lado del cliente con código tipo js, el servidor le pasaría toda la info de todas las vistas pero se van mostrando de a una) pero no se si todos los clientes pesados son SPAs
+
+
+--------------------- RESPUESTA PROFESOR ---------------------
+
+Buenas! Tal cual dice B, sí, el concepto de SPA está muy relacionado al Cliente Pesado pero no necesariamente todo cliente Pesado lo es al 100%, ya que podrías tomar la decisión de delegar cierta parte de tu lógica de presentación (UI) a otro cliente pesado, lo que llevaría a una recarga de la página. Pero en general sí, son conceptos fuertemente relacionados
