@@ -1,0 +1,21 @@
+Buenas.. Dejo comentarios a alto nivel y respuestas a preguntas concretas:
+
+1) Consulta y solicitud recomendación podría ser una misma entidad (juntar ambos datos en una sola entidad)
+
+
+2) La relación entre las fotos y etapas y consultas está Ok
+
+
+3) [GRAVE] Mal modelado los pasos y los campos dinámicos. Deben apuntar al modelado del problema "Pregunta - Respuesta (Encuesta)".
+
+
+4) Siempre que tengan una relación OneToOne se puede simplificar los datos en una sola entidad. No abusen de estas relaciones, sino que solamente háganlas cuando realmente las amerite. Por ejemplo, Ubicación del consultorio está súper sobrada.
+
+
+5) Respondiendo a su propuesta de arquitectura del punto 2: Mal. El problema es que se está perdiendo la sesión porque, probablemente, haya varios servidores que no están compartiendo sesión y el balanceador me lleva a cualquiera sin importar donde YO tengo la sesión. Posible solución: Sticky session.
+
+
+6) Respecto a su comparación en el punto 1 de arq: "No hay tiempo de respuesta debido a que no se integra mediante API REST" => ??!! Tiempo de respuesta de qué? Lo mismo noté que mencionan en Performance - Tercera opción.
+
+
+7) Siguiendo con lo anterior, siguen sin decir qué aspectos/escenarios están comparando en cada atributo de calidad..
