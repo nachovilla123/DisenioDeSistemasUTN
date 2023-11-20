@@ -1,0 +1,221 @@
+@startuml
+
+entity Paciente {
+    idPaciente : Long  <PK>
+    idGenero : Long <FK>
+    --
+    nombre : varchar(255)
+    apellido : varchar(255)
+    fechaNacimiento : LocalDate
+    telefono : varchar(255)
+    medioComunicacion : varchar(50)
+    dni : char(8)
+}
+
+entity Genero {
+    idGenero : Long <PK>
+    --
+    nombre : varchar(255)
+}
+
+entity Ortodoncista {
+    idOrtodoncista : Long <PK>
+    --
+    nombre : varchar(255)
+    apellido : varchar(255)
+    telefono : varchar(char(12))
+    medioComunicacion :  varchar(50)
+    dni : char(8)
+}
+
+entity Consultorio {
+    idConsultorio : Long <PK>
+    idOrtodoncista : Long <FK>
+    --
+    nombre : varchar(255)
+    direccion : varchar(255)
+    telefono : varchar(255)
+}
+
+
+
+entity SolicitudRecomendacionXPaciente{
+    id_Paciente : Long <FK>
+    id_SolicitudRecomendacion : Long <FK>
+}
+
+entity Imagen {
+    idImage : Long <PK>
+    idConsulta : Long <FK>
+    --
+    nombre : varchar(255)
+    pathImage : varchar(255)
+}
+
+entity SolicitudRecomendacion {
+    idSolicitudRecomendacion : Long <PK>
+    idPaciente : Long <FK>
+    idOrtodoncista : Long <FK>
+    idConsulta : Long <FK>
+    --
+    fechaDeConsulta : Date
+    fechaDeRecomendacion : Date
+    motivo : varchar(255)
+    estado : char(2)
+    motivoRechazoDentalBA : varchar(255)
+    prioridadEstetica : varchar(255)
+    consultaProfesional : varchar(255)
+    maxilaresATratar : char(1)
+}
+
+
+
+entity Notificacion {
+    id : Long <PK>
+    idOrtodoncista : Long <FK>
+    --
+    title : varchar(255)
+    body : varchar(255)
+}
+
+entity Recomendacion {
+    id : Long <PK>
+    id_SolicitudRecomendacion : Long <FK>
+    --
+    fechaSolicitud : Date
+    fechaRespuesta : Date
+    tipoTratamiento : char(5)
+    observaciones : varchar(255)
+    cantidadEtapas: int
+    precioFinal : double
+    estado: char(2)
+
+    descripcionRechazoOrtodoncista: varchar(255)
+
+}
+
+
+entity Tratamiento {
+    id : Long <PK>
+    id_Paciente : Long <FK>
+    id_Ortodoncista : Long <FK>
+    id_Recomendacion : Long <FK>
+    id_tipoTratamiento : Long <FK>
+    ProcesoProduccionAlineador_id : Long <FK>
+    --
+    cantidadDeAlineadores : int
+    fechaInicio : Date
+    fechaFin : Date
+
+}
+
+entity imagenesXTratamiento{
+    idTratamiento : Long <FK>
+    idImage : Long <FK>
+}
+
+entity tipoTratamiento{
+    id : Long <PK>
+    --
+   precioDolarizado : Double
+   etapasCubiertas : int
+   cantidadAlineadores : int
+}
+
+
+entity Etapa {
+     id : Long <PK>
+     idTratamiento : Long<FK>
+     --
+     nombre Varchar(255)
+     CodigoIdentificadorFront Varchar(255)
+     emailOrtodoncista : char(2)
+     instrucciones varchar(255)
+}
+
+entity CuestinarioProcesoProduccionAlineador{
+    id : Long <PK>
+    --
+    nombre : varchar(255)
+    descripcion : varchar(255)
+}
+
+entity PreguntaPasoProceso {
+    id : Long <PK>
+    id_procesoProduccionalineador <FK>
+    --
+   descripcionDelPaso : varchar(255)
+}
+
+entity PasoRespuesta{
+    id : Long <PK>
+    id_PasoProcesoProduccionAlineador : Long <FK>
+    id_Alineador : Long <FK>
+    --
+     fechaInicio:Date
+     fechaFin:Date
+     datosComentarios: Varchar(255)
+     estaFinalizado: Boolean
+}
+
+entity CuestionarioProcesoRespondido{
+    id_tratamiento : Long <FK>
+    id_procesoProduccionalineador : Long <FK>
+     Estado:Char(12)
+     fechaInicio:Date
+     fechaFin:Date
+}
+
+CuestionarioProcesoRespondido }o--|| Tratamiento
+
+CuestionarioProcesoRespondido }o--||CuestinarioProcesoProduccionAlineador
+
+PasoRespuesta }|--|| PreguntaPasoProceso
+
+PasoRespuesta }|--|| CuestionarioProcesoRespondido
+
+PasoRespuesta }o--|| Tratamiento
+
+Ortodoncista ||--|{ Consultorio
+
+CuestinarioProcesoProduccionAlineador ||-|{ PreguntaPasoProceso
+
+
+Tratamiento ||--|{ imagenesXTratamiento
+
+Imagen ||--o{ imagenesXTratamiento
+
+Tratamiento }o--|| tipoTratamiento
+
+Tratamiento ||--|| Recomendacion
+
+Tratamiento||--|{ Etapa
+
+Consultorio ||--|{ SolicitudRecomendacion
+
+Ortodoncista ||--|{ SolicitudRecomendacion
+
+Paciente |o--|| Genero
+
+SolicitudRecomendacion ||--|{ Imagen
+
+Notificacion }o--|| Ortodoncista
+
+
+ SolicitudRecomendacionXPaciente }o-|| Paciente
+ SolicitudRecomendacionXPaciente }o--|| SolicitudRecomendacion
+
+
+
+SolicitudRecomendacion ||--o| Recomendacion
+@enduml
+
+
+-- entidades detectadas primera vuelta
+
+
+Justificaciones de diseño :
+1) Consideramos que se pueden añadir generos, por lo que optamos por tener otra tabla en vez de embeeder el genero.
+
+
+
