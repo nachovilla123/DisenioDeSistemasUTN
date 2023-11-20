@@ -68,6 +68,11 @@ Entity Prestamo{
     FechaFin : Date
 }
 
+Entity Conocidos{
+  id_conocido1 : Long <PK><FK>
+  id_conocido2 : Long <PK><FK>
+}
+
 
 
 Entity DLC{
@@ -77,7 +82,10 @@ Entity DLC{
      precioDeVenta : Double
 }
 
-
+Entity DLCAdquiridos{
+    id_DLC : Long <FK>
+    id_MiembroEstim : Long <FK>
+}
 
 Juego ||--o{ DLC
 Juego }o--|| Genero
@@ -88,8 +96,12 @@ Juego ||--|{ AtributoCargado
 Atributo_x_genero }o--|| Atributo
 Atributo_x_genero }o--|| Genero
 
+MiembroEstim ||--o{ Conocidos
+MiembroEstim ||--o{ Conocidos
 MiembroEstim ||--o{ JuegosAdquiridos
+MiembroEstim ||--o{ DLCAdquiridos
 JuegosAdquiridos }o--|| Juego
+DLCAdquiridos }o--|| DLC
 
 Compra }o--o| DLC
 Compra }o--o| Juego
