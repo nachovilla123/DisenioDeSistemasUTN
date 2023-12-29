@@ -1,0 +1,47 @@
+@startuml
+
+entity Persona {
+    Long id <PK>
+    Varchar(255) nombre
+}
+
+entity CuestionarioRespondido {
+   Long id <PK>
+   Long id_persona <FK>
+   Long id_cuestionario <FK>
+
+   DateTime fechaDeRespuesta;
+}
+
+entity Respuesta {
+    Long id <PK>
+    Long id_pregunta <FK>
+    Long id_cuestionarioRespondido <FK>
+    Varchar desarrolloDeRespuesta;
+}
+
+entity Pregunta {
+    Long id <PK>
+    Long id_cuestionario <FK>
+    Varchar(255) pregunta;
+}
+
+entity Cuestionario {
+    Long id <PK>
+
+    DateTime fechaDeCreacion;
+    DateTime fechaUltimaModificacion;
+}
+
+
+
+Persona  ||--o{  CuestionarioRespondido
+
+CuestionarioRespondido ||--o{ Respuesta
+
+Cuestionario ||--o{ CuestionarioRespondido
+Cuestionario ||--o{ Pregunta
+
+Pregunta  ||--o{ Respuesta
+
+@enduml

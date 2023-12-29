@@ -1,0 +1,43 @@
+@startuml
+
+class Persona {
+   List<CuestionarioRespondido> cuestionariosRespondidos;
+}
+
+class CuestionarioRespondido {
+   Cuestionario cuestionario;
+   List<Respuesta> respuestas;
+
+   LocalDateTime fechaDeRespuesta;
+
+
+    void addRespuesta(Respuesta respuesta);
+}
+
+class Respuesta {
+   Pregunta pregunta;
+   String desarrolloDeRespuesta;
+}
+
+class Pregunta {
+   String pregunta;
+}
+
+class Cuestionario {
+    List<Pregunta> preguntas;
+
+    LocalDateTime fechaDeCreacion;
+    LocalDateTime fechaUltimaModificacion;
+
+
+   void addPregunta(Pregunta pregunta);
+}
+
+
+Persona -->"*" CuestionarioRespondido
+CuestionarioRespondido -->"*" Respuesta
+CuestionarioRespondido --> "*" Cuestionario
+
+Cuestionario --> "*" Pregunta
+Respuesta --> Pregunta
+@enduml

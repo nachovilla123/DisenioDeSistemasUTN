@@ -1,0 +1,62 @@
+@startuml
+
+class Persona {
+   List<CuestionarioRespondido> cuestionariosRespondidos;
+}
+
+class CuestionarioRespondido {
+   Cuestionario cuestionario;
+   List<Respuesta> respuestas;
+
+   LocalDateTime fechaDeRespuesta;
+
+
+    void addRespuesta(Respuesta respuesta);
+}
+
+class Respuesta {
+   Pregunta pregunta;
+   String desarrolloDeRespuesta;
+    List<Opcion> opcionesSeleccionadas;
+
+    void addOpcion(Opcion opcion);
+}
+
+class Pregunta {
+   String pregunta;
+   List<Opcion> opciones;
+   TipoPregunta tipoPregunta;
+   void addOpcion(Opcion opcion);
+}
+
+class Cuestionario {
+   List<Pregunta> preguntas;
+
+   LocalDateTime fechaDeCreacion;
+   LocalDateTime fechaUltimaModificacion;
+
+
+   void addPregunta(Pregunta pregunta);
+}
+
+class Opcion {
+   String opcion;
+   boolean esCorrecta;
+   }
+
+enum TipoPregunta {
+   SELECCION_SIMPLE,
+   SELECCION_MULTIPLE,
+   DESARROLLO
+}
+Respuesta -->"*" Opcion
+Pregunta --> TipoPregunta
+Pregunta --> "*" Opcion
+
+Persona -->"*" CuestionarioRespondido
+CuestionarioRespondido -->"*" Respuesta
+CuestionarioRespondido --> "*" Cuestionario
+
+Cuestionario --> "*" Pregunta
+Respuesta --> Pregunta
+@enduml
