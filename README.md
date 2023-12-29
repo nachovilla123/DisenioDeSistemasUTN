@@ -3,7 +3,10 @@
 > Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repositorio o ponerte en contacto conmigo!
 
 Como usar el repo: https://www.youtube.com/watch?v=xKlJJZ_le2s&ab_channel=IgnacioMateoVillarruel
+
 Apunte segundo parcial: https://docs.google.com/document/d/1baSgiykyLjcHE91udDPlemrKaQzsuiJ0i5UumVdJqJ4/edit?usp=sharing
+
+Moldes para diagrama de clases: https://www.youtube.com/watch?v=c8QZakPBHz4&ab_channel=IgnacioMateoVillarruel
 
 ### PRIMER PARCIAL
 
