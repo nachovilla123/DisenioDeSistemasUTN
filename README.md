@@ -45,7 +45,7 @@ Moldes para diagrama de clases: [https://www.youtube.com/watch?v=c8QZakPBHz4&ab_
 
 ¡Agredezco mucho tu contribucion a este repositorio! Si queres agregar nuevos enunciados de ejercicios o soluciones mejoradas, te invito a seguir estos pasos para hacerlo mediante pull requests:
 
-1) Asegúrate de tener una cuenta de GitHub. Si no tienes una, puedes crear una de forma gratuita en https://github.com
+1)Asegúrate de tener una cuenta de GitHub. Si no tienes una, puedes crear una de forma gratuita en https://github.com
 
 2)Haz un fork de este repositorio haciendo clic en el botón "Fork" en la parte superior derecha de la página. Esto creará una copia del repositorio en tu cuenta de GitHub.
 
