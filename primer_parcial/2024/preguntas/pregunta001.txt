@@ -1,0 +1,10 @@
+- Alumno: 
+Una pregunta sobre el diagrama de componentes. Suponiendo que tenemos un componente propio (componente 1 del diagrama) que se tiene que conectar a un componente externo (componente 2 del diagrama), que expone una API rest.
+Para una integracion sincronica, se haría tal cual esta en el diagrama de la imagen, pero si usamos un asincronica, por ejemplo con webhook, hay que agregar la interfaz que nosotros exponemos para el callback url?
+Es decir, nuestro sistema tambien expone un endpoint a donde el componente externo va a mandar la respuesta final una vez que termine de procesar lo que necesita. Esto hay que simbolizarlo de alguna forma en el diagrama, o se explica aparte?
+
+-Ayudante:
+Si se puede mostrar la interfaz que va a consumir el webhook. Pero al ser un webhook, solamente utilizara la interfaz cuando el otro componente le pida algo.
+El webhook no se va a comunicar con vos primero.
+
+Por ese motivo conviene explicarlo con palabras de como es la integración con esa interfaz entrante/saliente

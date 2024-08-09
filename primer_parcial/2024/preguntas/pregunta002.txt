@@ -1,0 +1,22 @@
+Pregunta:
+Me marié un poco a la hora de diseñar los adapters que se usan para consumir api_rest, porque hasta el momento, por lo general yo venia haciendo una firma por ejemplo consultarVeracidadPersona(Persona): bool en la cual asumía que se consultaba una api externa y esta te devolvía un json con datos y luego de ahí deducir si la persona es veraz o no.
+El problema con esto es que al definir un valor de retorno estaría medio forzando a que la integracion sea sincrónica (A menos que use algún recurso tipo hilos y me quede esperando ahi) 
+En el caso del webhook como hay que definir un endpoint aparte entonces la firma pasaría a ser void consultarVeracidadPersona(Persona)
+Entonces cambia completamente la firma del adapter según el tipo de integración
+Ademas sigo medio dando vueltas con el tema de quien define si la respuesta es sincrónica o asincronica. si el que te expone la api o nosotros como clientes de la misma. Puesto que en varios finales solo dice algo como "consulto tal cosa mediante una API REST" y no hay mucho mas detalle que eso
+
+rta:
+Te propongo dos alternativas:
+
+2 interfaces separadas.
+una interfaz para recibir los datos y una interfaz para enviar los datos.
+
+-una única interfaz con 2 métodos
+un método para recibir datos
+un método para enviar datos
+
+En ambos casos es importante darse cuenta que el envió y la recepción de los datos ocurren en distintos momentos. 
+
+Es fundamental detectar que en algún lado tienen que estar los métodos para recibir los datos y otro método para enviarlos y explicar cuando se usan.
+
+Como extra, también es necesario especificar que datos se envían y que datos se reciben.
