@@ -8,6 +8,8 @@ Apunte segundo parcial: https://docs.google.com/document/d/1baSgiykyLjcHE91udDPl
 
 Moldes para diagrama de clases: [https://www.youtube.com/watch?v=c8QZakPBHz4&ab_channel=IgnacioMateoVillarruel](https://www.youtube.com/watch?v=UdHY1lEe438&ab_channel=IgnacioVillarruel)
 
+Moldes V2 2024: [https://docs.google.com/document/d/1Q7jJ0xCi5V5C1Yiemsjla271bxsx-YrCuwZkDz8OS-U/edit#heading=h.wq9xeqb9d0r]
+
 ### PRIMER PARCIAL
 
 - Cada carpeta hace referencia a una resolucion de un Final ( En la catedra resolvemos finales como parciales)
