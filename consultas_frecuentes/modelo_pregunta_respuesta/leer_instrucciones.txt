@@ -1,0 +1,116 @@
+# Modelo de Cuestionario - Ejemplo de Diseño
+
+## ⚠️ Importante: Diseñar no es copiar y pegar
+
+Querido lector, **diseñar no es copiar y pegar**. Es hacerse preguntas. Es adaptarse a un contexto. Es entender las necesidades reales de tu dominio y tomar decisiones fundamentadas.
+
+Este modelo es un **ejemplo de referencia** que muestra una posible solución para un sistema de cuestionarios. Pero tu problema puede tener requerimientos diferentes, y por lo tanto, tu diseño debería ser diferente.
+
+---
+
+## 📋 Descripción del Modelo
+
+Este modelo representa un sistema donde:
+- Se pueden crear **Cuestionarios** con múltiples **Preguntas**
+- Las **Personas** pueden responder cuestionarios, generando **CuestionariosRespondidos**
+- Cada respuesta puede ser de diferentes tipos: desarrollo libre, selección simple, selección múltiple
+- Las preguntas pueden tener **Opciones** (para preguntas de opción múltiple)
+
+### Estructura del Modelo
+
+En este directorio encontrarás diferentes versiones del modelo:
+
+1. **ModeloCuestionarioCaso1.puml** - Versión básica sin opciones (solo preguntas de desarrollo)
+2. **ModeloCuestionarioCaso2.puml** - Versión completa con opciones y tipos de preguntas
+3. **DERModeloCuestionarioCaso1.puml** - Modelo de datos relacional correspondiente
+4. **modelo_Cuestionario.puml** - Versión alternativa del diagrama de clases
+
+---
+
+## 💡 Ejemplos de Instancias
+
+### Ejemplo 1: Cuestionario de Evaluación de DDS
+
+**Cuestionario:** "Evaluación Final DDS 2024"
+- **Pregunta 1:** "¿Qué es el acoplamiento?" (Tipo: DESARROLLO)
+- **Pregunta 2:** "¿DDS es divertido?" (Tipo: SELECCION_SIMPLE)
+  - Opción A: "Sí" (esCorrecta: true)
+  - Opción B: "No" (esCorrecta: false)
+- **Pregunta 3:** "Selecciona los patrones creacionales:" (Tipo: SELECCION_MULTIPLE)
+  - Opción A: "Singleton" (esCorrecta: true)
+  - Opción B: "Factory Method" (esCorrecta: true)
+  - Opción C: "Observer" (esCorrecta: false)
+
+**Persona:** "Juan Pérez"
+**CuestionarioRespondido:**
+- Fecha: 2024-12-15 14:30:00
+- **Respuestas:**
+  - Respuesta 1: "El acoplamiento es el grado de interdependencia entre módulos..." (desarrollo)
+  - Respuesta 2: Opción seleccionada "Sí"
+  - Respuesta 3: Opciones seleccionadas ["Singleton", "Factory Method"]
+
+### Ejemplo 2: Cuestionario Simple (sin opciones)
+
+**Cuestionario:** "Definición de Sistema"
+- **Pregunta 1:** "Desarrolle la definición de sistema" (Tipo: DESARROLLO)
+
+**Persona:** "María González"
+**CuestionarioRespondido:**
+- Fecha: 2024-12-15 16:00:00
+- **Respuestas:**
+  - Respuesta 1: "Un sistema es un conjunto de elementos interrelacionados..."
+
+---
+
+## 🤔 Preguntas para Reflexionar
+
+Te recomiendo que te plantees estas preguntas antes de usar este modelo en tu ejercicio:
+
+### Sobre la Completitud de las Respuestas
+- ¿Qué pasaría si las preguntas fueran **obligatorias**? ¿Cómo modelarías esto?
+- ¿Y si una persona puede **responder varias veces** el mismo cuestionario? ¿Qué cambios requiere el modelo?
+- ¿Qué sucede si una persona puede **responder parcialmente** un cuestionario y completarlo después?
+
+### Sobre la Evaluación y Puntaje
+- ¿Qué cambios hay que hacer para soportar que el cuestionario tenga un **puntaje total** al responderlo?
+- ¿Y si ahora el puntaje del cuestionario **depende del valor de cada pregunta**?
+- ¿Y si ahora se desea que las preguntas tengan un **porcentaje del valor del cuestionario**?
+- ¿Cómo modelarías un sistema donde algunas preguntas valen más que otras?
+
+### Sobre las Opciones y Tipos de Preguntas
+- ¿Qué pasa si una pregunta de selección múltiple permite **más de una respuesta correcta**?
+- ¿Cómo manejarías preguntas de tipo **verdadero/falso**?
+- ¿Y si necesitas preguntas de tipo **numérico** o **fecha**?
+- ¿Qué sucede si una opción puede estar **deshabilitada** temporalmente?
+
+### Sobre la Temporalidad y Versiones
+- ¿Cómo manejarías si un cuestionario puede **modificarse** después de que alguien ya lo respondió?
+- ¿Qué pasa si necesitas mantener un **historial de versiones** del cuestionario?
+- ¿Cómo modelarías que un cuestionario tenga una **fecha de inicio y fin** de disponibilidad?
+
+### Sobre las Restricciones de Acceso
+- ¿Qué cambios requiere si solo ciertas **personas pueden responder** ciertos cuestionarios?
+- ¿Cómo modelarías que un cuestionario solo se puede responder **una vez por persona**?
+- ¿Y si necesitas que un cuestionario tenga un **límite de tiempo** para responderlo?
+
+### Sobre el Modelo de Datos
+- ¿Es necesario tener la clase **Persona** en el modelo de dominio? ¿O es un concepto de otra capa?
+- ¿Qué diferencias hay entre el modelo de objetos y el modelo relacional? ¿Por qué existen estas diferencias?
+- ¿Cómo afectaría al diseño si necesitas **compartir cuestionarios** entre diferentes organizaciones?
+
+### Sobre la Adaptación al Contexto
+- **¿Tu dominio realmente necesita la clase Opcion?** Tal vez tu dominio no necesita preguntas de opción múltiple.
+- ¿Qué pasa si en tu ejercicio las preguntas son siempre del mismo tipo? ¿Sigue siendo necesario el enum TipoPregunta?
+- ¿Cómo adaptarías este modelo si tu sistema es para **encuestas anónimas** en lugar de evaluaciones?
+
+---
+
+## 🎯 Recomendación Final
+
+**No copies este modelo tal cual.** Analiza:
+1. ¿Cuáles son los requerimientos **reales** de tu ejercicio?
+2. ¿Qué conceptos de este modelo aplican a tu contexto?
+3. ¿Qué conceptos sobran o faltan?
+4. ¿Qué decisiones de diseño tomarías y por qué?
+
+El diseño es un proceso de **reflexión y adaptación**, no de copia. Usa este ejemplo como inspiración, pero siempre piensa en las necesidades específicas de tu problema.
