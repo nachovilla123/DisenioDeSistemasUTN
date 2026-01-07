@@ -10,38 +10,110 @@ Moldes para diagrama de clases: [https://www.youtube.com/watch?v=c8QZakPBHz4&ab_
 
 Moldes V2 2024: [https://docs.google.com/document/d/1Q7jJ0xCi5V5C1Yiemsjla271bxsx-YrCuwZkDz8OS-U/edit#heading=h.wq9xeqb9d0r]
 
-### PRIMER PARCIAL
+---
 
-- Cada carpeta hace referencia a una resolucion de un Final ( En la catedra resolvemos finales como parciales)
-- Para algunos parciales existen **distintas** resoluciones, cada una tiene sus defectos y ventajas! 
-- La resolucion es de algun alumno del curso y tiene sus consideraciones con **RECOMENDACIONES** de un PROFESOR
-- Intentar seguir los archivos dentro de cada carpeta como si fuera una **conversacion** de **Slack/wpp.**
+## 📁 Estructura del Repositorio
 
+### 📚 `apuntes_lecturas_powers/`
+Material teórico de estudio y material de la cátedra.
 
+- **`apuntes_diagramas/`** - Apuntes sobre diagramas:
+  - Casos de uso (CU)
+  - Diagrama entidad relación (DER)
+  - Teoría de Requerimientos
+- **`patrones_de_diseño/`** - PDFs de patrones de diseño:
+  - Adapter, Builder, Command, Composite, Decorator, Facade
+  - Factory Method, Observer, Singleton, State, Strategy, Template Method
+- **`powers_cursada/`** - Material de clases:
+  - Atributos de Calidad y Patrones de Diseño
+  - Refactoring, Code Smells, SOLID
+  - Arquitectura de Software (Partes I, II, III)
+  - Persistencia de Datos (Parte I y II)
+- **`moldes_imprimibles_DER/`** - Moldes para diagramas DER
+- **`moldes_imprimibles_diagrama_clases/`** - Plantillas para diagramas de clases
+- **`lecturas_recomendadas/`** - Lecturas sugeridas
+- **`Links De lecturas.md`** - Enlaces útiles organizados por tema
+- **`diagramaDeClases.txt`** - Información sobre diagramas de clases
 
-### RESUELTOS PRIMER PARCIAL / PARTE DE OBJETOS-DOMINIO
+### 📝 `primer_parcial/`
+Resoluciones de parciales organizadas por año. Cada carpeta contiene resoluciones de alumnos con **RECOMENDACIONES** de profesores.
 
-#### 2023
-- ESTIM (Al menos 3 versiones distintas)
-- SERVICIO DE ATENCION AUTOMOTOR
-- TINDERZ
+**Estructura:** Cada parcial puede tener múltiples versiones (V1, V2, etc.) con sus respectivos feedbacks.
 
-#### 2022
-- NOTESBOX (Al menos 2 versiones distintas)
-- LA UNIVERSIDAD TE LLEVA A CATAR
+#### Por año:
+- **`2019/`**
+  - `CUIDANDONOS/` - Resolución del parcial
+- **`2021/`**
+  - `BOLSA_DE_TRABAJO/` - Múltiples versiones con feedbacks en audio/video
+  - `GESTION_CONSORCIOS/` - Versiones V1 y V2
+- **`2022/`**
+  - `NOTESBOX/` - Versiones V1 y V2
+  - `UNIVERSIDAD_TE_LLEVA_A_CATAR/` - Versión V1
+- **`2023/`**
+  - `ESTIM/` - 3 versiones distintas (V1, V2, V3)
+  - `SERVICIO_ATENCION_AUTOMOTOR/` - Versión V1
+  - `TINDERZ/` - Versión V1
+- **`2024/`**
+  - `preguntas/` - Preguntas del año
+- **`ejercicios_patrones_diseño/`** - Ejercicios resueltos:
+  - `moduloExportador/` - Strategy + Adapter
+  - `tendencias_musicales/` - State + Template Method
 
-#### 2021
-- GESTION DE CONSORCIOS
-- BOLSA DE TRABAJO
+> 💡 **Tip:** Los archivos dentro de cada carpeta están organizados como una conversación (Slack/WhatsApp). Sigue el flujo de consultas y respuestas para entender el proceso de diseño.
 
-#### 2019
-- CUIDANDONOS
+### 📊 `segundo_parcial/`
+Resoluciones del segundo parcial organizadas por año. Incluye modelos de datos (DER) y ejercicios de persistencia.
 
-### OTRAS_CONSULTAS
-- En esta carpeta fui colocando algunas preguntas que surgieron en la cursada.
-- Muchas son interesantes y interesantes, recomiendo su lectura!
+#### Por año:
+- **`2019/`** - Final y DER
+- **`2021/`** - Modelo 2021 con múltiples versiones y feedbacks
+- **`2022/`**
+  - `Cartagram/` - Resolución
+  - `Lentti/` - Resolución con consultas
+  - `modelo_2022/` - Modelo con versiones y feedbacks
+  - `UNIVERSIDAD_TE_LLEVA_A_CATAR/` - Versión V1
+- **`2023/`**
+  - `estim/` - DER y resolución
+  - `tinderz/` - Resolución con feedback
+- **`dudas-teoricas/`** - Consultas teóricas:
+  - `cliente-pesado-SPAs/` - Sobre clientes pesados y SPAs
+  - `estrategia-abordaje-arquitectura/` - Estrategias de arquitectura
+- **`ejercicios_resultos_y_corregidos/`** - Ejercicios corregidos:
+  - `moduloStock/` - Ejercicio resuelto
+  - `rico_sano_y_natural/` - Modelos de datos (múltiples versiones)
 
+### 📋 `finales/`
+Enunciados de exámenes finales organizados por año.
 
+- **`enunciados_de_finales/`** - Enunciados desde 2016 hasta 2023:
+  - `2016/` - 5 finales
+  - `2017/` - 10 finales
+  - `2018/` - 10 finales
+  - `2019/` - 10 finales
+  - `2020/` - 7 finales
+  - `2021/` - 12 finales
+  - `2022/` - 9 finales
+  - `2023/` - 5 finales
+- **`readme.txt`** - Nota sobre el desarrollo de resoluciones
+
+> 📌 **Nota:** Las resoluciones de la primera parte de los finales se encuentran en `primer_parcial/`. A medida que avance el año, se irán completando todas las carpetas.
+
+### ❓ `consultas_frecuentes/`
+Consultas comunes de alumnos con respuestas y ejemplos.
+
+- **`errores_comunes/`** - Documento con errores frecuentes al comunicar un diseño:
+  - Clases vacías
+  - Herencia sin implementación
+  - Métodos fuera de lugar
+  - Roles del sistema en el dominio
+- **`flechas_diagrama_en_doble_sentido/`** - Consulta sobre acoplamiento bidireccional:
+  - Conversación alumno-profesor
+  - Audios con respuestas
+  - Imágenes de ejemplo
+- **`modelo_pregunta_respuesta/`** - Ejemplo de modelo de cuestionario:
+  - Diagramas de clases (múltiples versiones)
+  - Modelo DER
+  - Documentación con ejemplos y preguntas reflexivas
 
 # Colaboraciones
 
@@ -75,7 +147,6 @@ git commit -m "Agregado posible resolucion _nombreParcial_"
 ```
 git push origin agregar-resolucion-parcial
 ```
-
 
 9) Abre tu repositorio clonado en GitHub y verás un mensaje para crear un nuevo pull request desde la rama que acabas de pushear. Haz clic en el botón "Compare & pull request" para abrir una nueva solicitud de extracción (PR).
 
