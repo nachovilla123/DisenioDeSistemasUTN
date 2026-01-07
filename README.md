@@ -1,17 +1,3 @@
-**Repositorio para Diseño de Sistemas UTN FRBA 2023.**
-
-> Si tienes alguna pregunta|duda|sugerencia, no dudes en abrir un Issue en el repositorio o ponerte en contacto conmigo!
-
-Como usar el repo: https://www.youtube.com/watch?v=xKlJJZ_le2s&ab_channel=IgnacioMateoVillarruel
-
-Apunte segundo parcial: https://docs.google.com/document/d/1baSgiykyLjcHE91udDPlemrKaQzsuiJ0i5UumVdJqJ4/edit?usp=sharing
-
-Moldes para diagrama de clases: [https://www.youtube.com/watch?v=c8QZakPBHz4&ab_channel=IgnacioMateoVillarruel](https://www.youtube.com/watch?v=UdHY1lEe438&ab_channel=IgnacioVillarruel)
-
-Moldes V2 2024: [https://docs.google.com/document/d/1Q7jJ0xCi5V5C1Yiemsjla271bxsx-YrCuwZkDz8OS-U/edit#heading=h.wq9xeqb9d0r]
-
----
-
 ## 📁 Estructura del Repositorio
 
 ### 📚 `apuntes_lecturas_powers/`
