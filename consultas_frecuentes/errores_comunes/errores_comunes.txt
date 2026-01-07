@@ -1,0 +1,170 @@
+# Errores Comunes en el Diseño de Sistemas
+
+## ⚠️ Aviso Importante
+
+Este documento contiene errores comunes que fui encontrando al resolver parciales,finales y charlando con otros alumnos
+
+---
+
+## 📋 Lista de Errores Comunes
+
+### 1. ❌ Modelar una clase totalmente vacía
+
+**Problema:** Si en tu diagrama de clases aparece una clase vacía, sin métodos y sin atributos, ¿para qué está en tu diagrama?
+
+**¿Por qué es un error?**
+- Una clase sin comportamiento ni estado no aporta valor al diseño
+- Si no tiene responsabilidades, probablemente no debería existir en el modelo
+- Genera confusión sobre el propósito de la clase
+
+**Solución:**
+- Si la clase es necesaria, debe tener al menos atributos o métodos que justifiquen su existencia
+- Si no tiene nada, considera si realmente es necesaria o si puede ser eliminada
+- Si es una clase abstracta o interfaz, debe tener al menos métodos abstractos definidos
+
+**Ejemplo:**
+```
+❌ MAL:
+class Producto {
+    // vacía
+}
+
+✅ BIEN:
+class Producto {
+    String nombre
+    String descripcion
+}
+```
+
+---
+
+### 2. ❌ Herencia/Interfaces sin implementación de métodos
+
+**Problema:** Si modelamos una herencia o una interfaz, las clases que la heredan **DEBEN implementar los métodos**.
+
+**¿Por qué es un error?**
+- Si defines una interfaz o clase abstracta con métodos, las clases hijas deben implementarlos
+- Dejar métodos sin implementar genera un diseño incompleto
+- No comunicas claramente cómo se comportan las clases concretas
+
+**Solución:**
+- Si no tienes tiempo para copiar todos los métodos en las clases que heredan o implementan, **deja alguna justificación** que aclare eso en tus decisiones de diseño
+- Puedes anotar: "Por limitaciones de espacio, se muestran solo los métodos principales. Las clases concretas implementan todos los métodos de la interfaz."
+- Si es posible, muestra al menos los métodos más importantes implementados
+
+**Ejemplo:**
+```
+❌ MAL:
+interface Calculadora {
+    int sumar(int a, int b)
+}
+
+class CalculadoraBasica implements Calculadora {
+    // sin implementar sumar()
+}
+
+✅ BIEN:
+interface Calculadora {
+    int sumar(int a, int b)
+}
+
+class CalculadoraBasica implements Calculadora {
+    int sumar(int a, int b) {
+        return a + b
+    }
+}
+
+// O con justificación:
+// Nota: Por limitaciones de espacio, se muestran solo los métodos principales.
+// Las clases concretas implementan todos los métodos de Pagable.
+
+---
+
+### 4. ❌ Métodos fuera de lugar (responsabilidades de presentación en el dominio)
+
+**Problema:** Si modelamos el dominio, es importante colocar los métodos en el lugar correcto.
+Nuestros métodos NO tienen que referir a responsabilidades de una capa de presentación.
+
+**¿Por qué es un error?**
+- El dominio no debe conocer detalles de presentación
+- Métodos como `mostrarResultados()` o `visualizar_resultado()` no pertenecen al dominio
+- En nuestro dominio, ¿qué hace "mostrar"? Nada. Es un requerimiento que se resuelve en la capa de presentación del sistema
+
+**Solución:**
+- Los métodos del dominio deben expresar comportamientos del negocio
+- Si necesitas "mostrar" algo, el dominio puede tener métodos que retornen datos, pero no que los muestren
+- Separa las responsabilidades: dominio = lógica de negocio, presentación = visualización
+
+**Ejemplo:**
+```
+❌ MAL (en el dominio):
+class Cuestionario {
+    void mostrarResultados() {
+        // mostrar en pantalla
+    }
+    
+    void visualizarRespuestas() {
+        // mostrar respuestas
+    }
+
+    apretarBoton(){
+
+    }
+}
+
+✅ BIEN (en el dominio):
+class Cuestionario {
+    List<Respuesta> obtenerRespuestas() {
+        return this.respuestas
+    }
+    
+    int calcularPuntaje() {
+        // lógica de negocio
+    }
+}
+
+// La presentación usa estos métodos para mostrar
+```
+
+---
+
+### 5. ❌ Entidades de roles del sistema en la capa de dominio
+
+**Problema:** En la capa de dominio, no tener entidades de tipo ADMINISTRADOR, USUARIO (roles del sistema).
+
+**¿Por qué es un error?**
+- Los roles como "Administrador" o "Usuario" son conceptos de seguridad/autorización, no del dominio
+- El dominio debe modelar conceptos del negocio, no roles técnicos del sistema
+- Mezclar roles del sistema con el dominio genera acoplamiento innecesario
+
+**Solución:**
+- Modela los conceptos del dominio, no los roles del sistema
+- Si un actor "usuario" compra algo, modela "Comprador", "Cliente", "Miembro", "Jugador", etc.
+- Los roles del sistema se manejan en otras capas (seguridad, autorización)
+
+**Ejemplo:**
+```
+❌ MAL:
+class Usuario {
+    void comprarJuego()
+}
+
+class Administrador {
+    void gestionarSistema()
+}
+
+✅ BIEN:
+// En el dominio:
+class Jugador {
+    void comprarJuego()
+}
+
+class Miembro {
+    void comprarJuego()
+}
+
+// Los roles (Usuario, Admin) se manejan en otra capa
+```
+
+**Ejemplo real:** En el final ESTIM existe un actor usuario que compra juegos. En el dominio lo podemos llamar **Miembro** o **Jugador**, no "Usuario".
+
